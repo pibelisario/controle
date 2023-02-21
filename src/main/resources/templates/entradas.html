@@ -1,0 +1,27 @@
+<!DOCTYPE html >
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Entradas</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>Rg:</th>
+        <th>Nome:</th>
+        <th>Cpf:</th>
+        <th>Data/Hora:</th>
+    </tr>
+    <tr th:each="entrada : ${entradas}">
+        <td th:text="${entrada.rg}"></td>
+        <td th:text="${entrada.nome}"></td>
+        <td th:text="${entrada.cpf}"></td>
+        <td th:text="${#dates.format(entrada.data, 'dd-MMM-yyyy HH:mm')}"></td>
+
+    </tr>
+</table>
+<a href="#">Voltar</a>
+
+</body>
+</html>

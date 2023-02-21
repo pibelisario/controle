@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -22,13 +23,8 @@ AdcModel {
     @NotEmpty
     private String nome;
     private String cpf;
-    @NotNull
-    @NotEmpty
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private LocalDate dia;
-    @NotNull
-    @NotEmpty
-    private LocalDateTime hora;
+    private Date data;
     @NotNull
     @NotEmpty
     private String local;
@@ -39,13 +35,12 @@ AdcModel {
     public AdcModel() {
     }
 
-    public AdcModel(Long id, String rg, String nome, String cpf, LocalDate dia, LocalDateTime hora, String local, String tipo) {
+    public AdcModel(Long id, String rg, String nome, String cpf, Date data, String local, String tipo) {
         this.id = id;
         this.rg = rg;
         this.nome = nome;
         this.cpf = cpf;
-        this.dia = dia;
-        this.hora = hora;
+        this.data = data;
         this.local = local;
         this.tipo = tipo;
     }
@@ -82,20 +77,12 @@ AdcModel {
         this.cpf = cpf;
     }
 
-    public LocalDate getDia() {
-        return dia;
+    public Date getData() {
+        return data;
     }
 
-    public void setDia(LocalDate dia) {
-        this.dia = dia;
-    }
-
-    public LocalDateTime getHora() {
-        return hora;
-    }
-
-    public void setHora(LocalDateTime hora) {
-        this.hora = hora;
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public String getLocal() {
