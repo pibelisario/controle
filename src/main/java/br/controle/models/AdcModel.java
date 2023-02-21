@@ -6,11 +6,12 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-public class Adc {
-
+public class
+AdcModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,7 +28,7 @@ public class Adc {
     private LocalDate dia;
     @NotNull
     @NotEmpty
-    private Date hora;
+    private LocalDateTime hora;
     @NotNull
     @NotEmpty
     private String local;
@@ -35,10 +36,10 @@ public class Adc {
     @NotEmpty
     private String tipo;
 
-    public Adc() {
+    public AdcModel() {
     }
 
-    public Adc(Long id, String rg, String nome, String cpf, LocalDate dia, Date hora, String local, String tipo) {
+    public AdcModel(Long id, String rg, String nome, String cpf, LocalDate dia, LocalDateTime hora, String local, String tipo) {
         this.id = id;
         this.rg = rg;
         this.nome = nome;
@@ -89,11 +90,11 @@ public class Adc {
         this.dia = dia;
     }
 
-    public Date getHora() {
+    public LocalDateTime getHora() {
         return hora;
     }
 
-    public void setHora(Date hora) {
+    public void setHora(LocalDateTime hora) {
         this.hora = hora;
     }
 
