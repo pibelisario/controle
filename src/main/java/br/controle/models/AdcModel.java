@@ -27,21 +27,17 @@ AdcModel {
     private Date data;
     @NotNull
     @NotEmpty
-    private String local;
-    @NotNull
-    @NotEmpty
     private String tipo;
 
     public AdcModel() {
     }
 
-    public AdcModel(Long id, String rg, String nome, String cpf, Date data, String local, String tipo) {
+    public AdcModel(Long id, String rg, String nome, String cpf, Date data, String tipo) {
         this.id = id;
         this.rg = rg;
         this.nome = nome;
         this.cpf = cpf;
         this.data = data;
-        this.local = local;
         this.tipo = tipo;
     }
 
@@ -83,14 +79,6 @@ AdcModel {
 
     public void setData(Date data) {
         this.data = data;
-    }
-
-    public String getLocal() {
-        return local;
-    }
-
-    public void setLocal(String local) {
-        this.local = local;
     }
 
     public String getTipo() {

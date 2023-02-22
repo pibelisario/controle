@@ -1,0 +1,15 @@
+body{
+
+    width: 1000px;
+    margin: auto;
+  }
+
+  header{
+    text-align: center;
+    margin: auto;
+  }
+
+  div{
+    background-color: aliceblue;
+    padding: 10px;
+  }
