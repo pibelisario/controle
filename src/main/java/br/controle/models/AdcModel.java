@@ -27,18 +27,18 @@ AdcModel {
     private Date data;
     @NotNull
     @NotEmpty
-    private String tipo;
+    private String categoria;
 
     public AdcModel() {
     }
 
-    public AdcModel(Long id, String rg, String nome, String cpf, Date data, String tipo) {
+    public AdcModel(Long id, String rg, String nome, String cpf, Date data, String categoria) {
         this.id = id;
         this.rg = rg;
         this.nome = nome;
         this.cpf = cpf;
         this.data = data;
-        this.tipo = tipo;
+        this.categoria = categoria;
     }
 
     public Long getId() {
@@ -81,11 +81,11 @@ AdcModel {
         this.data = data;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }
