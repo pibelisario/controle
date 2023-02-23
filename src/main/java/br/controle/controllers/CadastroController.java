@@ -1,12 +1,10 @@
 package br.controle.controllers;
 
+import br.controle.enums.CategoriaCadastro;
 import br.controle.models.Cadastro;
 import br.controle.repositories.CadastroRepository;
 import br.controle.services.CadastroService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -57,6 +55,7 @@ public class CadastroController {
     @GetMapping("/cadastro")
     public ModelAndView cadastro(){
         ModelAndView mv = new ModelAndView("/cadastro");
+        mv.addObject("listaCategorias", CategoriaCadastro.values());
         return mv;
     }
 
@@ -67,6 +66,19 @@ public class CadastroController {
         return mv;
     }
 
+
+    @GetMapping("/buscar")
+    public ModelAndView buscar(){
+        ModelAndView mv = new ModelAndView("/buscar");
+        return mv;
+    }
+
+    @PostMapping("/buscarRg")
+    public ModelAndView buscarRg(@RequestParam("rg") Long rg){
+        ModelAndView mv = new ModelAndView("/buscar");
+        System.out.println(rg);
+        return mv;
+    }
 
 
 }

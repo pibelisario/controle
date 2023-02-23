@@ -35,21 +35,35 @@
     </nav>
 </header>
 
-<table  class="table table-striped">
-    <tr>
-        <th>Rg:</th>
-        <th>Nome:</th>
-        <th>Data/Hora:</th>
-        <th>Categoria:</th>
-    </tr>
-    <tr th:each="entrada : ${entradas}">
-        <td th:text="${entrada.rg}"></td>
-        <td th:text="${entrada.nome}"></td>
-        <td th:text="${#dates.format(entrada.data, 'dd-MMM-yyyy HH:mm')}"></td>
-        <td th:text="${entrada.categoria}"></td>
+<div>
+    <form action="/adc/buscarRg" method="post" id="buscarPorRg">
+        <label for="rg">Buscar Rg: </label>
+        <input type="text" id="rg" name="rg">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
 
-    </tr>
-</table>
+</div>
+    <table  class="table table-striped">
+        <tr>
+            <th>Rg:</th>
+            <th>Nome:</th>
+            <th>Cpf:</th>
+            <th>Data/Hora:</th>
+            <th>Tel. Celular:</th>
+            <th>Tel. Fixo</th>
+            <th>Categoria:</th>
+        </tr>
+        <tr th:each="entrada : ${entradas}">
+            <td th:text="${entrada.rg}"></td>
+            <td th:text="${entrada.nome}"></td>
+            <td th:text="${entrada.cpf}"></td>
+            <td th:text="${#dates.format(entrada.data, 'dd-MMM-yyyy HH:mm')}"></td>
+            <td th:text="${entrada.celular}"></td>
+            <td th:text="${entrada.telefone}"></td>
+            <td th:text="${entrada.categoria}"></td>
+
+        </tr>
+    </table>
 
 <a th:href="@{/adc/cadastro}">Voltar</a>
 
