@@ -1,32 +1,26 @@
 package br.controle.controllers;
 
-import br.controle.models.AdcModel;
-import br.controle.repositories.AdcRepository;
-import br.controle.services.AdcService;
+import br.controle.models.Cadastro;
+import br.controle.repositories.CadastroRepository;
+import br.controle.services.CadastroService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.xml.crypto.Data;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/adc")
-public class AdcController {
+public class CadastroController {
 
-    AdcService adcService;
-    AdcRepository adcRepository;
+    CadastroService cadastroService;
+    CadastroRepository cadastroRepository;
 
-    public AdcController(AdcService adcService, AdcRepository adcRepository) {
-        this.adcService = adcService;
-        this.adcRepository = adcRepository;
+    public CadastroController(CadastroService cadastroService, CadastroRepository cadastroRepository) {
+        this.cadastroService = cadastroService;
+        this.cadastroRepository = cadastroRepository;
     }
 
     @GetMapping("/teste")
@@ -54,7 +48,7 @@ public class AdcController {
 //            entradas.add(a1);
 //            entradas.add(a2);
 
-        List<AdcModel> entradas = adcService.findAll();
+        List<Cadastro> entradas = cadastroService.findAll();
         ModelAndView mv = new ModelAndView("/entradas");
         mv.addObject("entradas", entradas);
         return mv;
@@ -67,9 +61,9 @@ public class AdcController {
     }
 
     @PostMapping()
-    public ModelAndView salvar(AdcModel adcModel){
+    public ModelAndView salvar(Cadastro cadastro){
         ModelAndView mv = new ModelAndView("redirect:adc/entradas");
-        adcService.save(adcModel);
+        cadastroService.save(cadastro);
         return mv;
     }
 

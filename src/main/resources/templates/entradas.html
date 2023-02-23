@@ -8,7 +8,7 @@
     <style>
         body{
 
-        width: 1000px;
+        width: 1400px;
         margin: auto;
       }
 
@@ -40,6 +40,8 @@
         <th>Nome:</th>
         <th>Cpf:</th>
         <th>Data/Hora:</th>
+        <th>Tel. Celular:</th>
+        <th>Tel. Fixo</th>
         <th>Categoria:</th>
     </tr>
     <tr th:each="entrada : ${entradas}">
@@ -47,6 +49,8 @@
         <td th:text="${entrada.nome}"></td>
         <td th:text="${entrada.cpf}"></td>
         <td th:text="${#dates.format(entrada.data, 'dd-MMM-yyyy HH:mm')}"></td>
+        <td th:text="${entrada.celular}"></td>
+        <td th:text="${entrada.telefone}"></td>
         <td th:text="${entrada.categoria}"></td>
 
     </tr>
