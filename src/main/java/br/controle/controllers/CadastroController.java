@@ -56,6 +56,7 @@ public class CadastroController {
     public ModelAndView cadastro(){
         ModelAndView mv = new ModelAndView("/cadastro");
         mv.addObject("listaCategorias", CategoriaCadastro.values());
+        mv.addObject("objCadastro", new Cadastro());
         return mv;
     }
 
@@ -110,7 +111,14 @@ public class CadastroController {
         return mv;
     }
 
-
+    @GetMapping("/editarCadastro/{idCadastro}")
+    public ModelAndView editarCadasro(@PathVariable("idCadastro") Long id) {
+        ModelAndView mv = new ModelAndView("/editar");
+        mv.addObject("objCadastro", cadastroService.findById(id));
+        mv.addObject("listaCategorias", CategoriaCadastro.values());
+        System.out.println(id);
+        return mv;
+    }
 
 
 }

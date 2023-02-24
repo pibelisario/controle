@@ -64,7 +64,7 @@
             <td th:text="${entrada.celular}"></td>
             <td th:text="${entrada.telefone}"></td>
             <td th:text="${entrada.categoria}"></td>
-            <td><a href="#">Editar</a></td>
+            <td><a th:href="@{/adc/editarCadastro/{idCadastro}(idCadastro=${entrada.id})}">Editar</a></td>
             <td><a th:href="@{/adc/excluirCadastro/{idCadastro}(idCadastro=${entrada.id})}">Excluir</a></td>
         </tr>
     </table>
