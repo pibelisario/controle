@@ -4,6 +4,7 @@ import br.controle.models.Cadastro;
 import br.controle.repositories.CadastroRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -16,8 +17,13 @@ public class CadastroService {
         this.cadastroRepository = cadastroRepository;
     }
 
+    public Cadastro findById(Long id){
+        return cadastroRepository.findById(id).get();
+    }
     public List<Cadastro> findAll(){
-        return cadastroRepository.findAll();
+        List<Cadastro> cadastros = cadastroRepository.findAll();
+        Collections.reverse(cadastros);
+        return cadastros;
     }
 
     public void save(Cadastro cadastro){
@@ -35,5 +41,9 @@ public class CadastroService {
 
     public List<Cadastro> findByNome(String nome){
         return cadastroRepository.findByNome(nome);
+    }
+
+    public void excluirCadastro(Long id){
+        cadastroRepository.deleteById(id);
     }
 }

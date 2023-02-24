@@ -13,7 +13,7 @@
   <style>
     body {
 
-      width: 1000px;
+      width: 1200px;
       margin: auto;
     }
 
@@ -33,16 +33,7 @@
 
 <body>
 
-<header>
-  <nav class="navbar bg-primary" data-bs-theme="dark">
-    <form class="container-fluid justify-content-start">
-      <a th:href="@{/adc/entradas}" class="btn btn-warning">Entradas</a>
-      <a th:href="@{/adc/cadastro}" class="btn btn-success">Cadastro</a>
-      <a th:href="@{/adc/buscar}" class="btn btn-secondary">Buscar</a>
-    </form>
-  </nav>
-</header>
-
+<header th:replace="fragmento :: header"></header>
 <div class="container">
   <div class="row">
     <form action="/adc" class="col s12" method="post">

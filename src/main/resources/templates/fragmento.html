@@ -8,7 +8,7 @@
     <style>
         body{
 
-        width: 1200px;
+        width: 1000px;
         margin: auto;
       }
 
@@ -25,23 +25,16 @@
 
 </head>
 <body>
-<header th:replace="fragmento :: header"></header>
+<header th:fragment="header">
+    <nav class="navbar bg-primary" data-bs-theme="dark">
+        <form class="container-fluid justify-content-start">
+            <a th:href="@{/adc/entradas}" class="btn btn-warning">Entradas</a>
+            <a th:href="@{/adc/cadastro}" class="btn btn-success">Cadastro</a>
+            <a th:href="@{/adc/buscar}" class="btn btn-secondary">Buscar</a>
+        </form>
+    </nav>
+</header>
 
-<table  class="table table-striped">
-    <tr>
-        <th>Rg:</th>
-        <th>Nome:</th>
-        <th>Data/Hora:</th>
-        <th>Categoria:</th>
-    </tr>
-    <tr th:each="entrada : ${entradas}">
-        <td th:text="${entrada.rg}"></td>
-        <td th:text="${entrada.nome}"></td>
-        <td th:text="${#dates.format(entrada.data, 'dd-MMM-yyyy HH:mm')}"></td>
-        <td th:text="${entrada.categoria}"></td>
-
-    </tr>
-</table>
 
 <a th:href="@{/adc/cadastro}">Voltar</a>
 

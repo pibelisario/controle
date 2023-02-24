@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface CadastroRepository extends JpaRepository<Cadastro, Long> {
-
+    @Query("select cadastro from Cadastro cadastro where cadastro.rg like %?1%")
     List<Cadastro> findByRg(String rg);
     List<Cadastro> findByCpf(String cpf);
     @Query("select cadastro from Cadastro cadastro where cadastro.nome like %?1%")

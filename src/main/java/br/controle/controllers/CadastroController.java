@@ -99,6 +99,18 @@ public class CadastroController {
         System.out.println(nome);
         return mv;
     }
+    @GetMapping("/excluirCadastro/{idCadastro}")
+    public ModelAndView excluirCadastro(@PathVariable("idCadastro") Long id){
+        Cadastro cadastro = cadastroService.findById(id);
+        cadastroService.excluirCadastro(id);
+        List<Cadastro> cadastros = cadastroService.findByRg(cadastro.getRg());
+        ModelAndView mv = new ModelAndView("/buscar");
+        mv.addObject("lista", cadastros);
+        System.out.println(id);
+        return mv;
+    }
+
+
 
 
 }

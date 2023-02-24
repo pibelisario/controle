@@ -8,7 +8,7 @@
     <style>
         body{
 
-        width: 1400px;
+        width: 1200px;
         margin: auto;
       }
 
@@ -25,15 +25,7 @@
 
 </head>
 <body>
-<header>
-    <nav class="navbar bg-primary" data-bs-theme="dark">
-        <form class="container-fluid justify-content-start">
-            <a th:href="@{/adc/entradas}" class="btn btn-warning">Entradas</a>
-            <a th:href="@{/adc/cadastro}" class="btn btn-success">Cadastro</a>
-            <a th:href="@{/adc/buscar}" class="btn btn-secondary">Buscar</a>
-        </form>
-    </nav>
-</header>
+<header th:replace="fragmento :: header"></header>
 
 <div class="container">
     <div class="row">
@@ -62,6 +54,8 @@
             <th>Tel. Celular:</th>
             <th>Tel. Fixo</th>
             <th>Categoria:</th>
+            <th></th>
+            <th></th>
         </tr>
         <tr th:each="entrada : ${lista}">
             <td th:text="${entrada.rg}"></td>
@@ -70,7 +64,8 @@
             <td th:text="${entrada.celular}"></td>
             <td th:text="${entrada.telefone}"></td>
             <td th:text="${entrada.categoria}"></td>
-
+            <td><a href="#">Editar</a></td>
+            <td><a th:href="@{/adc/excluirCadastro/{idCadastro}(idCadastro=${entrada.id})}">Excluir</a></td>
         </tr>
     </table>
 
