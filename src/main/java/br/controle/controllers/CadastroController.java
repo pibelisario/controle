@@ -74,9 +74,29 @@ public class CadastroController {
     }
 
     @PostMapping("/buscarRg")
-    public ModelAndView buscarRg(@RequestParam("rg") Long rg){
+    public ModelAndView buscarRg(@RequestParam("rg") String rg){
         ModelAndView mv = new ModelAndView("/buscar");
+        List<Cadastro> rgLista = cadastroService.findByRg(rg);
+        mv.addObject("lista", rgLista);
         System.out.println(rg);
+        return mv;
+    }
+
+    @PostMapping("/buscarCpf")
+    public ModelAndView buscarCpf(@RequestParam("cpf") String cpf){
+        ModelAndView mv = new ModelAndView("/buscar");
+        List<Cadastro> cpfList = cadastroService.findByCpf(cpf);
+        mv.addObject("lista", cpfList);
+        System.out.println(cpf);
+        return mv;
+    }
+
+    @PostMapping("/buscarNome")
+    public ModelAndView buscarNome(@RequestParam("nome") String nome){
+        ModelAndView mv = new ModelAndView("/buscar");
+        List<Cadastro> nomeList = cadastroService.findByNome(nome);
+        mv.addObject("lista", nomeList);
+        System.out.println(nome);
         return mv;
     }
 
