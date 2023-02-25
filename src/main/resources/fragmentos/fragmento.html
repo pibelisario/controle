@@ -40,7 +40,7 @@
         <form action="/adc" class="col s12" method="post" th:object="${objCadastro}">
             <div class="row">
                 <div class="input-fiel col s6">
-                    <label class="form-label" for="rg">Rg</label>
+                    <label class="form-label" for="rg">Rg do Associado</label>
                     <input class="form-control" id="rg" name="rg" placeholder="Digite rg sem pontos" type="text" th:field="*{rg}">
                 </div>
                 <div class="input-fiel col s6">
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Atualizar</button>
-            <a class="btn btn-danger" th:href="@{/adc/cadastro}">Cancelar</a>
+            <a class="btn btn-danger" th:href="@{/adc/buscar}">Cancelar</a>
         </form>
 
     </div>
