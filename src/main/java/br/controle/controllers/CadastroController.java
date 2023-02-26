@@ -22,8 +22,9 @@ public class CadastroController {
     }
 
     @GetMapping("/teste")
-    public String index(){
-        return "testando";
+    public ModelAndView teste(){
+        ModelAndView mv = new ModelAndView("teste");
+        return mv;
     }
 
     @GetMapping("/entradas")
