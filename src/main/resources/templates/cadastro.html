@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head th:replace="../fragmentos/fragmento :: head">
   <meta charset="UTF-8">
   <title>Cadastro</title>
   <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -16,28 +16,28 @@
 <header th:replace="../fragmentos/fragmento :: header"></header>
 <div class="container">
   <div class="row">
-    <form action="/adc" class="col s12" method="post" th:object="${objCadastro}">
+    <form action="/controle" class="col s12" method="post">
       <div class="row">
         <div class="input-fiel col s6">
           <label class="form-label" for="rg">Rg do Associado</label>
-          <input class="form-control" id="rg" name="rg" placeholder="Digite rg sem pontos" type="text" th:field="*{rg}">
+          <input class="form-control" id="rg" name="rg" placeholder="Digite rg sem pontos">
         </div>
         <div class="input-fiel col s6">
           <label class="form-label" for="nome">Nome</label>
-          <input class="form-control" id="nome" name="nome" placeholder="Nome" type="text" th:field="*{nome}">
+          <input class="form-control" id="nome" name="nome" placeholder="Nome" type="text">
         </div>
       </div>
       <div class="row">
         <div class="input-fiel col s6">
           <label class="form-label" for="cpf">cpf</label>
           <input autocomplete="off" class="form-control" id="cpf" name="cpf" onkeyup="mascaraCpf('___.___.___-__', this)"
-                 placeholder="Digite cpf sem pontos" type="text" th:field="*{cpf}">
+                 placeholder="Digite cpf sem pontos" type="text">
         </div>
         <div class="input-fiel col s6">
           <label class="form-label">Categoria</label>
           <select class="form-select" aria-label="Default select example" name="categoria">
             <option th:each="categorias : ${listaCategorias}"
-                    th:value="${categorias}" th:text="${categorias}" th:field="*{categoria}"></option>
+                    th:value="${categorias}" th:text="${categorias}"></option>
           </select>
         </div>
       </div>
@@ -45,16 +45,16 @@
         <div class="input-fiel col s6">
           <label class="form-label" for="celular">Telefone Celular:</label>
           <input autocomplete="off" class="form-control" id="celular" name="celular"
-                 onkeyup="mascaraCel('(##)#####-####', this)" placeholder="Celular" type="text" th:field="*{celular}">
+                 onkeyup="mascaraCel('(##)#####-####', this)" placeholder="Celular" type="text">
         </div>
         <div class="input-fiel col s6">
           <label class="form-label" for="telefone">Telefone Fixo:</label>
           <input autocomplete="off" class="form-control" id="telefone" name="telefone"
-                 onkeyup="mascaraFixo('(##)####-####', this)" placeholder="Telefone fixo" type="text" th:field="*{telefone}">
+                 onkeyup="mascaraFixo('(##)####-####', this)" placeholder="Telefone fixo" type="text">
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Cadastrar</button>
-      <a class="btn btn-danger" th:href="@{/adc/cadastro}">Cancelar</a>
+      <button type="submit" class="btn btn-primary">Cadastro</button>
+      <a class="btn btn-danger" th:href="@{/controle/buscar}">Cancelar</a>
     </form>
 
   </div>

@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @RestController
-@RequestMapping("/adc")
+@RequestMapping("/controle")
 public class CadastroController {
 
     CadastroService cadastroService;
@@ -63,7 +63,7 @@ public class CadastroController {
 
     @PostMapping()
     public ModelAndView salvar(Cadastro cadastro){
-        ModelAndView mv = new ModelAndView("redirect:adc/entradas");
+        ModelAndView mv = new ModelAndView("redirect:controle/entradas");
         cadastroService.save(cadastro);
         return mv;
     }
@@ -118,6 +118,15 @@ public class CadastroController {
         mv.addObject("objCadastro", cadastroService.findById(id));
         mv.addObject("listaCategorias", CategoriaCadastro.values());
         System.out.println(id);
+        return mv;
+    }
+
+    @PostMapping("/editarCadastro/{idCadastro}")
+    public ModelAndView editarCadastro(@PathVariable("idCadastro") Long id, Cadastro cadastro){
+        cadastroService.editar(id, cadastro);
+        List<Cadastro> entradas = cadastroService.findAll();
+        ModelAndView mv = new ModelAndView("/entradas");
+        mv.addObject("entradas", entradas);
         return mv;
     }
 
