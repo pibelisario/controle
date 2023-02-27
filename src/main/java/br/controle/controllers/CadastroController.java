@@ -26,32 +26,6 @@ public class CadastroController {
         return mv;
     }
 
-    @GetMapping("/entradas")
-    public ModelAndView entradas(){
-//            AdcModel a1 = new AdcModel();
-//            a1.setRg("5370184");
-//            a1.setNome("Paulo");
-//            a1.setCpf("700.001.781-36");
-//            a1.setTipo("Associado");
-//            a1.setData(new Date());
-//
-//            AdcModel a2 = new AdcModel();
-//            a1.setRg("65651651");
-//            a1.setNome("Maria");
-//            a1.setCpf("273.757.651-20");
-//            a1.setTipo("Convidada");
-//            a1.setData(new Date());
-//
-//            List<AdcModel> entradas = new ArrayList<>();
-//            entradas.add(a1);
-//            entradas.add(a2);
-
-        List<Cadastro> entradas = cadastroService.findAll();
-        ModelAndView mv = new ModelAndView("/entradas");
-        mv.addObject("entradas", entradas);
-        return mv;
-    }
-
     @GetMapping("/cadastro")
     public ModelAndView cadastro(){
         ModelAndView mv = new ModelAndView("/cadastro");

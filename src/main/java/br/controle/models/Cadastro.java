@@ -22,8 +22,6 @@ Cadastro {
     private String cpf;
     private String celular;
     private String telefone;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date data;
     @NotNull
     @NotEmpty
     private String categoria;
@@ -31,14 +29,13 @@ Cadastro {
     public Cadastro() {
     }
 
-    public Cadastro(Long id, String rg, String nome, String cpf, String celular, String telefone, Date data, String categoria) {
+    public Cadastro(Long id, String rg, String nome, String cpf, String celular, String telefone, String categoria) {
         this.id = id;
         this.rg = rg;
         this.nome = nome;
         this.cpf = cpf;
         this.celular = celular;
         this.telefone = telefone;
-        this.data = data;
         this.categoria = categoria;
     }
 
@@ -88,14 +85,6 @@ Cadastro {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
     }
 
     public String getCategoria() {

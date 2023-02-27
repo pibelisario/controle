@@ -27,7 +27,6 @@ public class CadastroService {
     }
 
     public void save(Cadastro cadastro){
-        cadastro.setData(new Date());
         cadastroRepository.save(cadastro);
     }
 
