@@ -5,6 +5,7 @@ import br.controle.models.Entrada;
 import br.controle.repositories.EntradaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,9 @@ public class EntradaService {
     }
 
     public List<Entrada> findAll(){
-        return entradaRepository.findAll();
+        List<Entrada> entradas = entradaRepository.findAll();
+        Collections.reverse(entradas);
+        return entradas;
     }
 
     public void salvar(Long id){

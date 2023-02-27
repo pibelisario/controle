@@ -58,10 +58,10 @@
         <th>Local:</th>
     </tr>
     <tr th:each="entrada : ${entradas}">
-        <td></td>
-        <td></td>
-        <td th:text="${entrada.data}"></td>
-        <td></td>
+        <td th:text="${entrada.cadastro.rg}"></td>
+        <td th:text="${entrada.cadastro.nome}"></td>
+        <td th:text="${#dates.format(entrada.data, 'dd-MMM-yyyy HH:mm')}"></td>
+        <td th:text="${entrada.cadastro.categoria}"></td>
         <td th:text="${entrada.local}"></td>
     </tr>
 </table>
