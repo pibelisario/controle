@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @RestController
-@RequestMapping("/controle")
 public class CadastroController {
 
     CadastroService cadastroService;
@@ -61,9 +60,9 @@ public class CadastroController {
         return mv;
     }
 
-    @PostMapping()
+    @PostMapping("salvar")
     public ModelAndView salvar(Cadastro cadastro){
-        ModelAndView mv = new ModelAndView("redirect:controle/entradas");
+        ModelAndView mv = new ModelAndView("redirect:/entradas");
         cadastroService.save(cadastro);
         return mv;
     }
@@ -75,7 +74,7 @@ public class CadastroController {
         return mv;
     }
 
-    @PostMapping("/buscarRg")
+    @PostMapping("buscarRg")
     public ModelAndView buscarRg(@RequestParam("rg") String rg){
         ModelAndView mv = new ModelAndView("/buscar");
         List<Cadastro> rgLista = cadastroService.findByRg(rg);
@@ -84,7 +83,7 @@ public class CadastroController {
         return mv;
     }
 
-    @PostMapping("/buscarCpf")
+    @PostMapping("buscarCpf")
     public ModelAndView buscarCpf(@RequestParam("cpf") String cpf){
         ModelAndView mv = new ModelAndView("/buscar");
         List<Cadastro> cpfList = cadastroService.findByCpf(cpf);
@@ -93,7 +92,7 @@ public class CadastroController {
         return mv;
     }
 
-    @PostMapping("/buscarNome")
+    @PostMapping("buscarNome")
     public ModelAndView buscarNome(@RequestParam("nome") String nome){
         ModelAndView mv = new ModelAndView("/buscar");
         List<Cadastro> nomeList = cadastroService.findByNome(nome);
