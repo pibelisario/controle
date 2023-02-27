@@ -39,33 +39,15 @@
         <th></th>
         <th></th>
     </tr>
-    <tr th:each="entrada : ${lista}">
-        <td th:text="${entrada.rg}"></td>
-        <td th:text="${entrada.nome}"></td>
-        <td th:text="${entrada.cpf}"></td>
-        <td th:text="${entrada.categoria}"></td>
-        <td><a th:href="#">Entrar</a></td>
-        <td><a th:href="#">Cancelar</a></td>
+    <tr th:each="cadastro : ${cadastros}">
+        <td th:text="${cadastro.rg}"></td>
+        <td th:text="${cadastro.nome}"></td>
+        <td th:text="${cadastro.cpf}"></td>
+        <td th:text="${cadastro.categoria}"></td>
+        <td><a th:href="@{/salvarEntrada/{idCadastro}(idCadastro=${cadastro.id})}" class="btn btn-primary">Entrar</a></td>
+        <td><a href="#" class="btn btn-danger">Cancelar</a></td>
     </tr>
 </table>
-
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <form action="salvar" class="col s12" method="post">-->
-<!--            <div class="row">-->
-<!--                <div class="input-fiel col s6">-->
-<!--                    <label class="form-label" for="rg">Rg do Associado</label>-->
-<!--                    <input class="form-control" id="rg" name="rg" placeholder="Digite rg sem pontos" required>-->
-<!--                </div>-->
-<!--                <div class="input-fiel col s6">-->
-<!--                    <label class="form-label" for="nome">Nome</label>-->
-<!--                    <input class="form-control" id="nome" name="nome" placeholder="Nome" type="text" required>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </form>-->
-
-<!--    </div>-->
-<!--</div>-->
 
 <table  class="table table-striped">
     <tr>
@@ -76,9 +58,10 @@
         <th>Local:</th>
     </tr>
     <tr th:each="entrada : ${entradas}">
-        <td th:text="${entrada.rg}"></td>
-        <td th:text="${entrada.nome}"></td>
-        <td th:text="${entrada.categoria}"></td>
+        <td></td>
+        <td></td>
+        <td th:text="${entrada.data}"></td>
+        <td></td>
         <td th:text="${entrada.local}"></td>
     </tr>
 </table>

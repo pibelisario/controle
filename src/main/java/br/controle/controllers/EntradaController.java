@@ -2,12 +2,11 @@ package br.controle.controllers;
 
 import br.controle.models.Cadastro;
 import br.controle.models.Entrada;
+import br.controle.services.CadastroService;
 import br.controle.services.EntradaService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -16,9 +15,11 @@ import java.util.List;
 public class EntradaController {
 
     EntradaService entradaService;
+    CadastroService cadastroService;
 
-    public EntradaController(EntradaService entradaService) {
+    public EntradaController(EntradaService entradaService, CadastroService cadastroService) {
         this.entradaService = entradaService;
+        this.cadastroService = cadastroService;
     }
 
     @GetMapping("/entradas")
@@ -30,7 +31,19 @@ public class EntradaController {
     }
 
     @PostMapping("buscarRgEntrada")
-    public ModelAndView buscarRgEntrada(@PathVariable("rg") Long rg){
-        ModelAndView mv = new ModelAndView("entradas");
+    public ModelAndView buscarRgEntrada(@RequestParam("rg") String rg){
+        ModelAndView mv = new ModelAndView("/entradas");
+        List<Cadastro> cadastros = cadastroService.findByRg(rg);
+        mv.addObject("cadastros", cadastros);
+        List<Entrada> entradas = entradaService.findAll();
+        mv.addObject("entradas", entradas);
+        return mv;
+    }
+
+    @GetMapping("/salvarEntrada/{idCadastro}")
+    public ModelAndView salvarEntrada(@PathVariable("idCadastro") Long id, Cadastro cadastro){
+        entradaService.salvar(id);
+        ModelAndView mv = new ModelAndView("redirect:/entradas");
+        return mv;
     }
 }

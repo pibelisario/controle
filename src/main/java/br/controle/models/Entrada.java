@@ -1,10 +1,7 @@
 package br.controle.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -22,13 +19,18 @@ public class Entrada {
     @NotEmpty
     private String local;
 
+    @ManyToOne
+    @JoinColumn(name = "cadastro_id")
+    private Cadastro cadastro;
+
     public Entrada() {
     }
 
-    public Entrada(Long id, Date data, String local) {
+    public Entrada(Long id, Date data, String local, Cadastro cadastro) {
         this.id = id;
         this.data = data;
         this.local = local;
+        this.cadastro = cadastro;
     }
 
     public Long getId() {
@@ -53,5 +55,13 @@ public class Entrada {
 
     public void setLocal(String local) {
         this.local = local;
+    }
+
+    public Cadastro getCadastro() {
+        return cadastro;
+    }
+
+    public void setCadastro(Cadastro cadastro) {
+        this.cadastro = cadastro;
     }
 }

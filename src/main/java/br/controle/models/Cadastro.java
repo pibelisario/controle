@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class
@@ -25,6 +27,9 @@ Cadastro {
     @NotNull
     @NotEmpty
     private String categoria;
+
+    @OneToMany(mappedBy = "cadastro", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Entrada> entradas = new ArrayList<Entrada>();
 
     public Cadastro() {
     }
@@ -93,5 +98,13 @@ Cadastro {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public List<Entrada> getEntradas() {
+        return entradas;
+    }
+
+    public void setEntradas(List<Entrada> entradas) {
+        this.entradas = entradas;
     }
 }
