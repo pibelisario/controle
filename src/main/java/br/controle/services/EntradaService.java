@@ -26,14 +26,8 @@ public class EntradaService {
         return entradas;
     }
 
-    public void salvar(Long id){
-        Cadastro cadastro = cadastroService.findById(id);
-        if (cadastro != null){
-            Entrada entrada = new Entrada();
-            entrada.setCadastro(cadastroService.findById(id));
-            entrada.setData(new Date());
-            entrada.setLocal("ODONTOLOGIA");
-            entradaRepository.save(entrada);
-        }
+    public void salvar(Entrada entrada){
+        entrada.setData(new Date());
+        entradaRepository.save(entrada);
     }
 }

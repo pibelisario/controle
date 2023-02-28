@@ -1,9 +1,11 @@
 package br.controle.controllers;
 
 import br.controle.enums.CategoriaCadastro;
+import br.controle.enums.LocalEntrada;
 import br.controle.models.Cadastro;
 import br.controle.repositories.CadastroRepository;
 import br.controle.services.CadastroService;
+import br.controle.services.EntradaService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,17 +14,18 @@ import java.util.List;
 @RestController
 public class CadastroController {
 
-    CadastroService cadastroService;
-    CadastroRepository cadastroRepository;
+   CadastroService cadastroService;
+   EntradaService entradaService;
 
-    public CadastroController(CadastroService cadastroService, CadastroRepository cadastroRepository) {
+    public CadastroController(CadastroService cadastroService, EntradaService entradaService) {
         this.cadastroService = cadastroService;
-        this.cadastroRepository = cadastroRepository;
+        this.entradaService = entradaService;
     }
 
     @GetMapping("/teste")
     public ModelAndView teste(){
         ModelAndView mv = new ModelAndView("teste");
+        mv.addObject("listaLocais", LocalEntrada.values());
         return mv;
     }
 
@@ -97,9 +100,7 @@ public class CadastroController {
     @PostMapping("/editarCadastro/{idCadastro}")
     public ModelAndView editarCadastro(@PathVariable("idCadastro") Long id, Cadastro cadastro){
         cadastroService.editar(id, cadastro);
-        List<Cadastro> entradas = cadastroService.findAll();
-        ModelAndView mv = new ModelAndView("/entradas");
-        mv.addObject("entradas", entradas);
+        ModelAndView mv = new ModelAndView("redirect:/buscar");
         return mv;
     }
 

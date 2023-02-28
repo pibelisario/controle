@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" th:href="@{/style.css}">
-	<title>Bootstrap</title>
+<head th:replace="../fragmentos/fragmento :: head">
+	<meta charset="UTF-8">
+	<title>Cadastro</title>
+	<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+		  integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" rel="stylesheet">
+	<script crossorigin="anonymous"
+			integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
+
+	</script>
+	<style th:replace="../fragmentos/fragmento :: style"></style>
 </head>
 <body>
-<h1>Bootstrap</h1>
-<h3>Testando bootstrap</h3>
+<header th:replace="../fragmentos/fragmento :: header"></header>
+<div class="container">
+	<div class="row">
+		<form action="salvarEntrada" class="col s12" method="post">
+			<div class="row">
+				<div class="input-fiel col s6">
+					<select class="form-select" aria-label="Default select example" name="local">
+						<option th:each="local : ${listaLocais}"
+								th:value="${local}" th:text="${local}"></option>
+					</select>
+				</div>
+				<div class="input-fiel col s6">
+					<input class="form-control" id="cadastro" name="cadastro" th:value="1" placeholder="Cadastro" type="hidden" required>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Cadastro</button>
+			<a class="btn btn-danger" th:href="@{/buscar}">Cancelar</a>
+		</form>
 
+	</div>
+</div>
+<script th:replace="../fragmentos/fragmento :: funcoes"></script>
 </body>
 </html>

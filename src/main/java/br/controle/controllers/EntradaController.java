@@ -1,5 +1,7 @@
 package br.controle.controllers;
 
+import br.controle.enums.CategoriaCadastro;
+import br.controle.enums.LocalEntrada;
 import br.controle.models.Cadastro;
 import br.controle.models.Entrada;
 import br.controle.services.CadastroService;
@@ -37,13 +39,38 @@ public class EntradaController {
         mv.addObject("cadastros", cadastros);
         List<Entrada> entradas = entradaService.findAll();
         mv.addObject("entradas", entradas);
+        mv.addObject("listaLocais", LocalEntrada.values());
         return mv;
     }
 
-    @GetMapping("/salvarEntrada/{idCadastro}")
-    public ModelAndView salvarEntrada(@PathVariable("idCadastro") Long id, Cadastro cadastro){
-        entradaService.salvar(id);
+
+    @PostMapping("buscarNomeEntrada")
+    public ModelAndView buscarNomeEntrada(@RequestParam("nome") String nome){
+        ModelAndView mv = new ModelAndView("/entradas");
+        List<Cadastro> cadastros = cadastroService.findByNome(nome);
+        mv.addObject("cadastros", cadastros);
+        List<Entrada> entradas = entradaService.findAll();
+        mv.addObject("entradas", entradas);
+        return mv;
+    }
+
+
+    @PostMapping("buscarCpfEntrada")
+    public ModelAndView buscarCpfEntrada(@RequestParam("cpf") String cpf){
+        ModelAndView mv = new ModelAndView("/entradas");
+        List<Cadastro> cadastros = cadastroService.findByCpf(cpf);
+        mv.addObject("cadastros", cadastros);
+        List<Entrada> entradas = entradaService.findAll();
+        mv.addObject("entradas", entradas);
+        return mv;
+    }
+
+
+    @PostMapping("salvarEntrada")
+    public  ModelAndView salvarEntrada(Entrada entrada){
         ModelAndView mv = new ModelAndView("redirect:/entradas");
+        entradaService.salvar(entrada);
+        System.out.println(entrada.getLocal());
         return mv;
     }
 }

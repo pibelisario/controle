@@ -19,8 +19,6 @@ public class Entrada {
     @NotEmpty
     private String local;
 
-    @NotNull
-    @NotEmpty
     @ManyToOne
     @JoinColumn(name = "cadastro_id")
     private Cadastro cadastro;
