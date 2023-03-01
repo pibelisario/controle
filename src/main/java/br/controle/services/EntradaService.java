@@ -3,6 +3,7 @@ package br.controle.services;
 import br.controle.models.Cadastro;
 import br.controle.models.Entrada;
 import br.controle.repositories.EntradaRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -30,4 +31,6 @@ public class EntradaService {
         entrada.setData(new Date());
         entradaRepository.save(entrada);
     }
+
+
 }
