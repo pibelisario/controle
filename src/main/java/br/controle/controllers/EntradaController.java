@@ -32,6 +32,14 @@ public class EntradaController {
         return mv;
     }
 
+    @GetMapping("/detalhes/{idCadastro}")
+    public ModelAndView detalhes(@PathVariable("idCadastro")Long id){
+        ModelAndView mv = new ModelAndView("/detalhes");
+        mv.addObject("objCadastro", cadastroService.findById(id));
+        mv.addObject("listaCategorias", CategoriaCadastro.values());
+        return mv;
+    }
+
     @PostMapping("buscarRgEntrada")
     public ModelAndView buscarRgEntrada(@RequestParam("rg") String rg){
         ModelAndView mv = new ModelAndView("/entradas");
