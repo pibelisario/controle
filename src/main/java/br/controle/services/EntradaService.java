@@ -21,11 +21,11 @@ public class EntradaService {
         this.cadastroService = cadastroService;
     }
 
-//    public List<Entrada> findAll(){
-//        List<Entrada> entradas = entradaRepository.findAll();
-//        Collections.reverse(entradas);
-//        return entradas;
-//    }
+    public List<Entrada> findAll(){
+        List<Entrada> entradas = entradaRepository.findAll();
+        Collections.reverse(entradas);
+        return entradas;
+    }
 
     public Page<Entrada> findAlll(){
          Page<Entrada> entradas = entradaRepository.findAll(PageRequest.of(0,5, Sort.Direction.DESC, "data"));
