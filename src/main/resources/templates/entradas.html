@@ -74,19 +74,41 @@
     </tr>
 </table>
 
-<div class="row" style="margin-top: 30px;">
-    <center>
-        <span th:if="${entradas.hasPrevious()}">
-            <a th:href="@{/entradasPag(page=${entradas.number-1}, size=${entradas.size})}">Anterior</a>
+<!--<div class="row" style="margin-top: 30px;">-->
+<!--    <center>-->
+<!--        <span th:if="${entradas.hasPrevious()}">-->
+<!--            <a th:href="@{/entradasPag(page=${entradas.number-1}, size=${entradas.size})}">Anterior</a>-->
+<!--        </span>-->
+<!--        <th:block th:each="i : ${#numbers.sequence(0, entradas.totalPages - 1)}">-->
+<!--            <a th:href="@{/entradasPag(page=${i}, size=${entradas.size})}">[[${i} + 1]]</a>-->
+<!--        </th:block>-->
+<!--        <span th:if="${entradas.hasNext()}">-->
+<!--            <a th:href="@{/entradasPag(page=${entradas.number+1}, size=${entradas.size})}">Próxima</a>-->
+<!--        </span>-->
+<!--    </center>-->
+<!--</div>-->
+<div class="pagination-div">
+    <span th:if="${entradas.hasPrevious()}">
+        <a th:href="@{/entradasPag(page=${entradas.number-1},size=${entradas.size})}">Previous</a>
+    </span>
+    <th:block th:each="i: ${#numbers.sequence(0, entradas.totalPages - 1)}">
+        <span th:if="${entradas.number == i}" class="selected">[[${i}+1]]</span>
+        <span th:unless="${entradas.number == i}">
+             <a th:href="@{/entradasPag(page=${i},size=${entradas.size})}">[[${i}+1]]</a>
         </span>
-        <th:block th:each="i : ${#numbers.sequence(0, entradas.totalPages - 1)}">
-            <a th:href="@{/entradasPag(page=${i}, size=${entradas.size})}">[[${i} + 1]]</a>
-        </th:block>
-        <span th:if="${entradas.hasNext()}">
-            <a th:href="@{/entradasPag(page=${entradas.number+1}, size=${entradas.size})}">Próxima</a>
-        </span>
-    </center>
+    </th:block>
+    <span th:if="${entradas.hasNext()}">
+        <a th:href="@{/entradasPag(page=${entradas.number+1},size=${entradas.size})}">Next</a>
+    </span>
 </div>
+
+<div th:if="${bookPage.totalPages > 0}" class="pagination"
+     th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/listBooks(size=${bookPage.size}, page=${pageNumber})}"
+       th:text=${pageNumber}
+       th:class="${pageNumber==bookPage.number + 1} ? active"></a>
+</div>
+
 
 <script>
     function mascaraCpf(mascara, input) {
