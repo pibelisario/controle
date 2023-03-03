@@ -40,14 +40,14 @@ public class EntradaController {
     @GetMapping("/entradas")
     public ModelAndView entradas(){
         ModelAndView mv = new ModelAndView("/entradas");
-        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0,2, Sort.by("id").descending())));
+        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0,4, Sort.by("id").descending())));
         return mv;
     }
 
     @GetMapping("/entradasPag")
-    public ModelAndView carregarPessoas(@PageableDefault(size = 5) org.springframework.data.domain.Pageable pageable,
+    public ModelAndView carregarPessoas(@PageableDefault(size = 4) org.springframework.data.domain.Pageable pageable,
                                         ModelAndView model) {
-        model.addObject("entradas", entradaService.findAll(PageRequest.of(pageable.getPageNumber(), 2, Sort.by("id").descending())));
+        model.addObject("entradas", entradaService.findAll(PageRequest.of(pageable.getPageNumber(), 4, Sort.by("id").descending())));
         model.setViewName("/entradas");
         return model;
     }
@@ -65,7 +65,7 @@ public class EntradaController {
         ModelAndView mv = new ModelAndView("/entradas");
         List<Cadastro> cadastros = cadastroService.findByRg(rg);
         mv.addObject("cadastros", cadastros);
-        mv.addObject("entradas", entradaService.findAlll());
+        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0, 4, Sort.by("id").descending())));
         mv.addObject("listaLocais", LocalEntrada.values());
         return mv;
     }
@@ -76,7 +76,8 @@ public class EntradaController {
         ModelAndView mv = new ModelAndView("/entradas");
         List<Cadastro> cadastros = cadastroService.findByNome(nome);
         mv.addObject("cadastros", cadastros);
-        mv.addObject("entradas", entradaService.findAlll());
+        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0, 4, Sort.by("id").descending())));
+        mv.addObject("listaLocais", LocalEntrada.values());
         return mv;
     }
 
@@ -86,7 +87,8 @@ public class EntradaController {
         ModelAndView mv = new ModelAndView("/entradas");
         List<Cadastro> cadastros = cadastroService.findByCpf(cpf);
         mv.addObject("cadastros", cadastros);
-        mv.addObject("entradas", entradaService.findAlll());
+        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0, 4, Sort.by("id").descending())));
+        mv.addObject("listaLocais", LocalEntrada.values());
         return mv;
     }
 

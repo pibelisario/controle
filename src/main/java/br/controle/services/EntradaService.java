@@ -25,10 +25,6 @@ public class EntradaService {
         return entradaRepository.findAll(pageable);
     }
 
-    public Page<Entrada> findAlll(){
-         Page<Entrada> entradas = entradaRepository.findAll(PageRequest.of(0,5, Sort.Direction.DESC, "data"));
-        return entradas;
-    }
 
     public void salvar(Entrada entrada){
         entrada.setData(new Date());
