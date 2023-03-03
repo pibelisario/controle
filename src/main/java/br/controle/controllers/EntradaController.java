@@ -15,8 +15,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import static org.springframework.boot.autoconfigure.web.format.DateTimeFormatters.formatter;
 
 @RestController
 public class EntradaController {
@@ -24,9 +27,12 @@ public class EntradaController {
     EntradaService entradaService;
     CadastroService cadastroService;
 
-    public EntradaController(EntradaService entradaService, CadastroService cadastroService) {
+    EntradaRepository entradaRepository;
+
+    public EntradaController(EntradaService entradaService, CadastroService cadastroService, EntradaRepository entradaRepository) {
         this.entradaService = entradaService;
         this.cadastroService = cadastroService;
+        this.entradaRepository = entradaRepository;
     }
 
     //    @GetMapping("/entradas")
@@ -112,6 +118,7 @@ public class EntradaController {
     public ModelAndView buscarData(@RequestParam("dataInicial")String dataInicial, @RequestParam("dataFinal")String dataFinal){
         ModelAndView mv = new ModelAndView("/data");
         System.out.println("Data Inicial: " +dataInicial+ " Data Final: " +dataFinal);
+        List<Entrada> entradas = entradaRepository.findByDatas(dataInicial, dataFinal);
         return mv;
     }
 
