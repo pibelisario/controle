@@ -15,6 +15,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -101,6 +102,18 @@ public class EntradaController {
         return mv;
     }
 
+    @GetMapping("data")
+    public ModelAndView data(){
+        ModelAndView mv = new ModelAndView("/data");
+        return mv;
+    }
+
+    @GetMapping("buscarData")
+    public ModelAndView buscarData(@RequestParam("dataInicial")String dataInicial, @RequestParam("dataFinal")String dataFinal){
+        ModelAndView mv = new ModelAndView("/data");
+        System.out.println("Data Inicial: " +dataInicial+ " Data Final: " +dataFinal);
+        return mv;
+    }
 
 
 }
