@@ -21,10 +21,8 @@ public class EntradaService {
         this.cadastroService = cadastroService;
     }
 
-    public List<Entrada> findAll(){
-        List<Entrada> entradas = entradaRepository.findAll();
-        Collections.reverse(entradas);
-        return entradas;
+    public Page<Entrada> findAll(Pageable pageable){
+        return entradaRepository.findAll(pageable);
     }
 
     public Page<Entrada> findAlll(){

@@ -22,12 +22,10 @@ public class EntradaController {
 
     EntradaService entradaService;
     CadastroService cadastroService;
-    EntradaRepository entradaRepository;
 
-    public EntradaController(EntradaService entradaService, CadastroService cadastroService, EntradaRepository entradaRepository) {
+    public EntradaController(EntradaService entradaService, CadastroService cadastroService) {
         this.entradaService = entradaService;
         this.cadastroService = cadastroService;
-        this.entradaRepository = entradaRepository;
     }
 
     //    @GetMapping("/entradas")
@@ -39,18 +37,17 @@ public class EntradaController {
 //        return mv;
 //    }
 
-//    @GetMapping("/entradas")
-//    public ModelAndView entradas(){
-//        ModelAndView mv = new ModelAndView("/entradas");
-//        mv.addObject("entradas", entradaService.findAlll());
-//        mv.addObject("entradas", entradaRepository.findAll(PageRequest.of(0,5, Sort.Direction.DESC, "data")));
-//        return mv;
-//    }
-
     @GetMapping("/entradas")
+    public ModelAndView entradas(){
+        ModelAndView mv = new ModelAndView("/entradas");
+        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0,2, Sort.by("id").descending())));
+        return mv;
+    }
+
+    @GetMapping("/entradasPag")
     public ModelAndView carregarPessoas(@PageableDefault(size = 5) org.springframework.data.domain.Pageable pageable,
                                         ModelAndView model) {
-        model.addObject("entradas", entradaRepository.findAll(PageRequest.of(0, 5, Sort.Direction.DESC, "data")));
+        model.addObject("entradas", entradaService.findAll(PageRequest.of(pageable.getPageNumber(), 2, Sort.by("id").descending())));
         model.setViewName("/entradas");
         return model;
     }
