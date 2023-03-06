@@ -2,8 +2,10 @@ package br.controle.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,12 +17,11 @@ Cadastro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    @NotEmpty
+    @NotBlank
     private String rg;
-    @NotNull
-    @NotEmpty
+    @NotBlank
     private String nome;
+    @CPF
     private String cpf;
     private String celular;
     private String telefone;

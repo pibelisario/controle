@@ -3,9 +3,9 @@ package br.controle.controllers;
 import br.controle.enums.CategoriaCadastro;
 import br.controle.enums.LocalEntrada;
 import br.controle.models.Cadastro;
-import br.controle.repositories.CadastroRepository;
 import br.controle.services.CadastroService;
 import br.controle.services.EntradaService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,7 +38,7 @@ public class CadastroController {
     }
 
     @PostMapping("salvar")
-    public ModelAndView salvar(Cadastro cadastro){
+    public ModelAndView salvar(@Valid Cadastro cadastro){
         ModelAndView mv = new ModelAndView("redirect:/entradas");
         cadastroService.save(cadastro);
         return mv;
