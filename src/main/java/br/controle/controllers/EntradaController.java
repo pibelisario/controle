@@ -15,11 +15,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static org.springframework.boot.autoconfigure.web.format.DateTimeFormatters.formatter;
 
 @RestController
 public class EntradaController {
@@ -52,7 +52,7 @@ public class EntradaController {
     }
 
     @GetMapping("/entradasPag")
-    public ModelAndView carregarPessoas(@PageableDefault(size = 4) org.springframework.data.domain.Pageable pageable,
+    public ModelAndView carregarEntradas(@PageableDefault(size = 4) org.springframework.data.domain.Pageable pageable,
                                         ModelAndView model) {
         model.addObject("entradas", entradaService.findAll(PageRequest.of(pageable.getPageNumber(), 4, Sort.by("id").descending())));
         model.setViewName("/entradas");
@@ -115,10 +115,9 @@ public class EntradaController {
     }
 
     @GetMapping("buscarData")
-    public ModelAndView buscarData(@RequestParam("dataInicial")String dataInicial, @RequestParam("dataFinal")String dataFinal){
-        ModelAndView mv = new ModelAndView("/data");
-        System.out.println("Data Inicial: " +dataInicial+ " Data Final: " +dataFinal);
-        List<Entrada> entradas = entradaRepository.findByDatas(dataInicial, dataFinal);
+    public ModelAndView buscarData(@RequestParam("dataInicial")String dataInicial, @RequestParam("dataFinal")String dataFinal) throws ParseException {
+        ModelAndView mv = new ModelAndView("/buscar");
+        mv.addObject("listaEntradas", entradaService.buscarPorDatas(dataInicial, dataFinal));
         return mv;
     }
 
