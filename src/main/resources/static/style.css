@@ -1,6 +1,6 @@
     body{
 
-        width: 1200px;
+        width: 1300px;
         margin: auto;
       }
 
@@ -12,8 +12,18 @@
       div{
         background-color: aliceblue;
         padding: 10px;
+        font-weight: bold;
+      }
+
+      legend {
+        font-weight: bolder;
       }
 
       nav > a{
         size: 40px;
       }
+
+      .cb-required > .form-label:after{
+        content: "*";
+      }
+

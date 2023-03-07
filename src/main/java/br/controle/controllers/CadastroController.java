@@ -6,9 +6,13 @@ import br.controle.models.Cadastro;
 import br.controle.services.CadastroService;
 import br.controle.services.EntradaService;
 import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,7 +34,7 @@ public class CadastroController {
     }
 
     @GetMapping("/cadastro")
-    public ModelAndView cadastro(){
+    public ModelAndView cadastro(Cadastro cadastro) {
         ModelAndView mv = new ModelAndView("/cadastro");
         mv.addObject("listaCategorias", CategoriaCadastro.values());
         mv.addObject("objCadastro", new Cadastro());
@@ -38,9 +42,22 @@ public class CadastroController {
     }
 
     @PostMapping("salvar")
-    public ModelAndView salvar(@Valid Cadastro cadastro){
-        ModelAndView mv = new ModelAndView("redirect:/entradas");
+    public ModelAndView salvar(@Valid Cadastro cadastro, BindingResult result
+            , RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            ModelAndView mv = new ModelAndView("/cadastro");
+            mv.addObject("objCadastro", cadastro);
+            mv.addObject("listaCategorias", CategoriaCadastro.values());
+            List<String> msg = new ArrayList<>();
+            for (ObjectError objectError : result.getAllErrors()) {
+                msg.add(objectError.getDefaultMessage());
+            }
+            mv.addObject("msg", msg);
+            return mv;
+        }
+        ModelAndView mv = new ModelAndView("redirect:/cadastro");
         cadastroService.save(cadastro);
+        attributes.addFlashAttribute("mensagem", "Cadastro salvo com sucesso.");
         return mv;
     }
 
