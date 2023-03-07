@@ -115,9 +115,23 @@ public class CadastroController {
     }
 
     @PostMapping("/editarCadastro/{idCadastro}")
-    public ModelAndView editarCadastro(@PathVariable("idCadastro") Long id, Cadastro cadastro){
+    public ModelAndView editarCadastro(@PathVariable("idCadastro") Long id, @Valid Cadastro cadastro, BindingResult result
+            , RedirectAttributes attributes){
+        ModelAndView mv = new ModelAndView();
+        if (result.hasErrors()){
+            mv.setViewName("redirect:/editarCadastro/" + id);
+            mv.addObject("objCadastro", cadastro);
+            mv.addObject("listaCategorias", CategoriaCadastro.values());
+            List<String> msg = new ArrayList<>();
+            for (ObjectError objectError : result.getAllErrors()) {
+                msg.add(objectError.getDefaultMessage());
+            }
+            attributes.addFlashAttribute("msg", msg);
+            return mv;
+        }
+        mv.setViewName("redirect:/editarCadastro/" + id);
         cadastroService.editar(id, cadastro);
-        ModelAndView mv = new ModelAndView("redirect:/buscar");
+        attributes.addFlashAttribute("mensagem", "Aualizado com sucesso.");
         return mv;
     }
 

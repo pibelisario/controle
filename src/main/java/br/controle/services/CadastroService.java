@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CadastroService {
@@ -42,7 +43,10 @@ public class CadastroService {
     }
 
     public List<Cadastro> findByRg(String rg){
-        return cadastroRepository.findByRg(rg);
+        //Limitando tamanho maximo da lista pra 10 cadastros.
+        List<Cadastro> listCadastros = cadastroRepository.findByRg(rg);
+        List<Cadastro> cadastros = listCadastros.stream().limit(10).collect(Collectors.toList());
+        return cadastros;
     }
 
     public List<Cadastro> findByCpf(String cpf){
@@ -50,7 +54,10 @@ public class CadastroService {
     }
 
     public List<Cadastro> findByNome(String nome){
-        return cadastroRepository.findByNome(nome);
+        //Limitando tamanho maximo da lista pra 10 cadastros.
+        List<Cadastro> listCadastros = cadastroRepository.findByNome(nome);
+        List<Cadastro> cadastros = listCadastros.stream().limit(10).collect(Collectors.toList());
+        return cadastros;
     }
 
     public void excluirCadastro(Long id){
