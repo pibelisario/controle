@@ -16,7 +16,7 @@
             <form action="buscarRgEntrada" method="post" id="buscarPorRg" class="col s3">
                 <label for="rg">Buscar Rg: </label>
                 <input type="text"  id="rg" name="rg" required placeholder="Digite rg sem pontos" autofocus="autofocus">
-                <button type="submit" class="btn btn-primary">Buscar</button>
+                <button type="submit" class="btn btn-primary" onclick="show()">Buscar</button>
             </form>
             <form action="buscarNomeEntrada" method="post" id="buscarPorNome" class="col s3">
                 <label for="nome">Buscar Nome: </label>
@@ -32,34 +32,34 @@
     </div>
 </fieldset>
 
-<table  class="table table-striped">
-    <tr>
-        <th>Rg:</th>
-        <th>Nome:</th>
-        <th>Cpf:</th>
-        <th>Categoria:</th>
-        <td>Local:</td>
-    </tr>
-    <tr th:each="cadastro : ${cadastros}">
-        <td th:text="${cadastro.rg}"></td>
-        <td th:text="${cadastro.nome}"></td>
-        <td th:text="${cadastro.cpf}"></td>
-        <td th:text="${cadastro.categoria}"></td>
-        <td>
-            <form action="salvarEntrada" class="col s12" method="post">
-                        <select class="form-select" aria-label="Default select example" name="local">
-                            <option th:each="local : ${listaLocais}"
-                                    th:value="${local}" th:text="${local}"></option>
-                        </select>
-                <br>
-                <button type="submit" class="btn btn-primary">Entrar</button>
-                <a class="btn btn-danger" th:href="@{/entradas}">Cancelar</a>
-                <input class="form-control" id="cadastro" name="cadastro" th:value="${cadastro.id}" type="hidden">
-            </form>
-        </td>>
-
-    </tr>
-</table>
+    <table  class="table table-striped">
+        <tr>
+            <th>Rg:</th>
+            <th>Nome:</th>
+            <th>Cpf:</th>
+            <th>Categoria:</th>
+            <td>Local:</td>
+        </tr>
+        <tr th:each="cadastro : ${cadastros}">
+            <td th:text="${cadastro.rg}"></td>
+            <td th:text="${cadastro.nome}"></td>
+            <td th:text="${cadastro.cpf}"></td>
+            <td th:text="${cadastro.categoria}"></td>
+            <td>
+                <form action="salvarEntrada" class="col s12" method="post">
+                            <select class="form-select" aria-label="Default select example" name="local">
+                                <option th:each="local : ${listaLocais}"
+                                        th:value="${local}" th:text="${local}"></option>
+                            </select>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <a class="btn btn-danger" th:href="@{/entradas}">Cancelar</a>
+                    <input class="form-control" id="cadastro" name="cadastro" th:value="${cadastro.id}" type="hidden">
+                </form>
+            </td>>
+    
+        </tr>
+    </table>
 
 
 <fildset>

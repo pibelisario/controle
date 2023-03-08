@@ -118,8 +118,14 @@ public class EntradaController {
 
     @GetMapping("buscarData")
     public ModelAndView buscarData(@RequestParam("dataInicial")String dataInicial, @RequestParam("dataFinal")String dataFinal) throws ParseException {
-        ModelAndView mv = new ModelAndView("/buscar");
+        ModelAndView mv = new ModelAndView("/buscarEntrada");
         mv.addObject("listaEntradas", entradaService.buscarPorDatas(dataInicial, dataFinal));
+        return mv;
+    }
+
+    @GetMapping("buscarEntrada")
+    public ModelAndView buscar(){
+        ModelAndView mv = new ModelAndView("/buscarEntrada");
         return mv;
     }
 
