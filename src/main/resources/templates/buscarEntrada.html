@@ -15,6 +15,9 @@
         </legend>
         <div class="container">
             <div class="row">
+                <div class="alert alert-danger" th:text="${mensagem}"
+                     th:if="${not #strings.isEmpty(mensagem)}">
+                </div>
                 <form action="buscarData" method="get" id="salvarData" class="col s3">
                     <label for="dataInicial">Data Inicial</label>
                     <input type="date" id="dataInicial" name="dataInicial">

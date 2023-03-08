@@ -15,6 +15,9 @@
         </legend>
         <div class="container">
             <div class="row">
+                <div class="alert alert-danger" th:text="${mensagem}"
+                     th:if="${not #strings.isEmpty(mensagem)}">
+                </div>
                 <form action="buscarRg" method="post" id="buscarPorRg" class="col s3">
                     <label for="rg">Buscar Rg: </label>
                     <input type="text"  id="rg" name="rg" required placeholder="Digite rg sem pontos">
@@ -52,7 +55,7 @@
             <td th:text="${entrada.telefone}"></td>
             <td th:text="${entrada.categoria}"></td>
             <td><a class="btn btn-primary" th:href="@{/editarCadastro/{idCadastro}(idCadastro=${entrada.id})}">Editar</a></td>
-            <td><a class="btn btn-danger"  th:data-confirm-delete="|Você tem certeza que deseja excluir: ${entrada.nome}?|"
+            <td><a class="btn btn-danger"  th:data-confirm-delete="|Você tem certeza que deseja excluir: ${entrada.nome} ?|"
                    onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false" th:href="@{/excluirCadastro/{idCadastro}(idCadastro=${entrada.id})}">Excluir</a></td>
         </tr>
     </table>

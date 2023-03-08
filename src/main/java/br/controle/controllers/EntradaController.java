@@ -119,7 +119,11 @@ public class EntradaController {
     @GetMapping("buscarData")
     public ModelAndView buscarData(@RequestParam("dataInicial")String dataInicial, @RequestParam("dataFinal")String dataFinal) throws ParseException {
         ModelAndView mv = new ModelAndView("/buscarEntrada");
-        mv.addObject("listaEntradas", entradaService.buscarPorDatas(dataInicial, dataFinal));
+        List<Entrada> entradas = entradaService.buscarPorDatas(dataInicial, dataFinal);
+        if (entradas.isEmpty()){
+            mv.addObject("mensagem", "Nenhum registo encontrado para as datas entre: " +dataInicial+ " e " +dataFinal);
+        }
+        mv.addObject("listaEntradas", entradas);
         return mv;
     }
 
