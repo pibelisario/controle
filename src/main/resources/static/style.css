@@ -1,6 +1,4 @@
     body{
-
-        width: 1300px;
         margin: auto;
       }
 
@@ -11,7 +9,7 @@
 
       div{
         background-color: aliceblue;
-        padding: 10px;
+        padding: 20px;
         font-weight: bold;
       }
 
