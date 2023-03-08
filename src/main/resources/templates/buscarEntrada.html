@@ -20,16 +20,16 @@
                 </div>
                 <form action="buscarData" method="get" id="salvarData" class="col s3">
                     <label for="dataInicial">Data Inicial</label>
-                    <input type="date" id="dataInicial" name="dataInicial">
+                    <input type="date" id="dataInicial" name="dataInicial" required>
                     <label for="dataFinal">Data Final</label>
-                    <input type="date" id="dataFinal" name="dataFinal">
+                    <input type="date" id="dataFinal" name="dataFinal" required>
                     <button type="submit" class="btn btn-primary">Buscar</button>
                 </form>
             </div>
         </div>
     </fieldset>
 
-    <table  class="table table-striped">
+    <table  class="table table-striped" th:if="${not #strings.isEmpty(listaEntradas)}">
         <tr>
             <th>Rg:</th>
             <th>Nome:</th>
@@ -48,6 +48,19 @@
         </tr>
     </table>
 
+    <div class="row" style="margin-top: 30px;" th:if="${not #strings.isEmpty(listaEntradas)}">
+        <center>
+            <span th:if="${listaEntradas.hasPrevious()}">
+                <a th:href="@{/BuscarDataPag(page=${listaEntradas.number-1}, size=${listaEntradas.size})}" class="btn btn-primary">Pág. Anterior</a>
+             </span>
+            <th:block th:each="i : ${#numbers.sequence(0, listaEntradas.totalPages - 1)}">
+                <a th:href="@{/BuscarDataPag(page=${i}, size=${listaEntradas.size})}">[[${i} + 1]]</a>
+            </th:block>
+            <span th:if="${listaEntradas.hasNext()}">
+                <a th:href="@{/BuscarDataPag(page=${listaEntradas.number+1}, size=${listaEntradas.size})}" class="btn btn-danger ">Próx. Pag</a>
+             </span>
+        </center>
+    </div>
 
 
 

@@ -13,10 +13,13 @@
     </legend>
     <div class="container">
         <div class="row">
+            <div class="alert alert-danger" th:text="${mensagem}"
+                 th:if="${not #strings.isEmpty(mensagem)}">
+            </div>
             <form action="buscarRgEntrada" method="post" id="buscarPorRg" class="col s3">
                 <label for="rg">Buscar Rg: </label>
                 <input type="text"  id="rg" name="rg" required placeholder="Digite rg sem pontos" autofocus="autofocus">
-                <button type="submit" class="btn btn-primary" onclick="show()">Buscar</button>
+                <button type="submit" class="btn btn-primary">Buscar</button>
             </form>
             <form action="buscarNomeEntrada" method="post" id="buscarPorNome" class="col s3">
                 <label for="nome">Buscar Nome: </label>
@@ -32,7 +35,7 @@
     </div>
 </fieldset>
 
-    <table  class="table table-striped">
+    <table  class="table table-striped" th:if="${not #strings.isEmpty(cadastros)}">
         <tr>
             <th>Rg:</th>
             <th>Nome:</th>

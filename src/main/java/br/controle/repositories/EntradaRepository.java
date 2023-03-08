@@ -2,6 +2,7 @@ package br.controle.repositories;
 
 import br.controle.models.Cadastro;
 import br.controle.models.Entrada;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +16,6 @@ import java.util.List;
 public interface EntradaRepository extends JpaRepository<Entrada, Long> {
 
 //
-        List<Entrada> findEntradasByDataBetween(Date dataInicial, Date dataFinal);
+        Page<Entrada> findEntradasByDataBetween(Date dataInicial, Date dataFinal, Pageable pageable);
 
 }
