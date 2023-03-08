@@ -19,7 +19,7 @@ Cadastro {
     private String rg;
     @NotBlank(message = "Nome não pode ser branco")
     private String nome;
-    @CPF(message = "CPF invalido")
+//    @CPF(message = "CPF invalido")
     private String cpf;
     private String celular;
     private String telefone;
