@@ -7,7 +7,7 @@
 
 <header th:replace="../fragmentos/fragmento :: header"></header>
 
-<div class="container">
+<div>
   <div class="row">
     <form th:action="@{/editarCadastro/{idCadastro}(idCadastro=${objCadastro.id})}" class="col s12" method="post" th:object="${objCadastro}">
       <div class="alert alert-success" th:text="${mensagem}"

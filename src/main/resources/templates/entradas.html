@@ -11,7 +11,7 @@
             <button class="btn btn-primary btn-lg" type="button" disabled style="font-size: 20px;">Buscar</button>
         </div>
     </legend>
-    <div class="container">
+    <div>
         <div class="row">
             <div class="alert alert-danger" th:text="${mensagem}"
                  th:if="${not #strings.isEmpty(mensagem)}">
@@ -104,19 +104,6 @@
         </span>
     </center>
 </div>
-<!--<div class="row" style="margin-top: 30px;">-->
-<!--    <center>-->
-<!--        <span th:if="${entradas.hasPrevious()}">-->
-<!--            <a th:href="@{/entradasPag(page=${entradas.number-1}, size=${entradas.size})}">Anterior</a>-->
-<!--        </span>-->
-<!--        <th:block th:each="i : ${#numbers.sequence(0, entradas.totalPages - 1)}">-->
-<!--            <a th:href="@{/entradasPag(page=${i}, size=${entradas.size})}">[[${i} + 1]]</a>-->
-<!--        </th:block>-->
-<!--        <span th:if="${entradas.hasNext()}">-->
-<!--            <a th:href="@{/entradasPag(page=${entradas.number+1}, size=${entradas.size})}">Próxima</a>-->
-<!--        </span>-->
-<!--    </center>-->
-<!--</div>-->
 
 <script>
     function mascaraCpf(mascara, input) {

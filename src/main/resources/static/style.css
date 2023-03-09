@@ -25,3 +25,13 @@
         content: "*";
       }
 
+      fieldset{
+        padding: 10px;
+      }
+
+      footer{
+        padding: 10px;
+        color: black;
+        height: 50px;
+      }
+
