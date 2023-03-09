@@ -41,7 +41,6 @@
             <th>Rg:</th>
             <th>Nome:</th>
             <th>Cpf:</th>
-            <th>Tel. Celular:</th>
             <th>Tel. Fixo</th>
             <th>Categoria:</th>
             <th></th>
@@ -51,7 +50,6 @@
             <td th:text="${entrada.rg}"></td>
             <td th:text="${entrada.nome}"></td>
             <td th:text="${entrada.cpf}"></td>
-            <td th:text="${entrada.celular}"></td>
             <td th:text="${entrada.telefone}"></td>
             <td th:text="${entrada.categoria}"></td>
             <td><a class="btn btn-primary" th:href="@{/editarCadastro/{idCadastro}(idCadastro=${entrada.id})}">Editar</a></td>
