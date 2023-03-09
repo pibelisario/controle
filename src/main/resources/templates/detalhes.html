@@ -26,21 +26,15 @@
                     <input autocomplete="off" class="form-control" id="cpf" disabled="" th:field="*{cpf}">
                 </div>
                 <div class="input-fiel col s6">
+                    <label class="form-label" for="telefone">Telefone Fixo:</label>
+                    <input autocomplete="off" class="form-control" id="telefone" disabled="" th:field="*{telefone}">
+                </div>
+                <div class="input-fiel col s6">
                     <label class="form-label">Categoria</label>
                     <select class="form-select" aria-label="Default select example" name="categoria" disabled="">
                         <option th:each="categorias : ${listaCategorias}"
                                 th:value="${categorias}" th:text="${categorias}" th:field="*{categoria}"></option>
                     </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-fiel col s6">
-                    <label class="form-label" for="celular">Telefone Celular:</label>
-                    <input autocomplete="off" class="form-control" id="celular" disabled="" th:field="*{celular}">
-                </div>
-                <div class="input-fiel col s6">
-                    <label class="form-label" for="telefone">Telefone Fixo:</label>
-                    <input autocomplete="off" class="form-control" id="telefone" disabled="" th:field="*{telefone}">
                 </div>
             </div>
             <a class="btn btn-danger" th:href="@{/entradas}">Voltar</a>

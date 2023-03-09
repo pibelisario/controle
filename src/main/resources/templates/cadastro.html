@@ -40,6 +40,12 @@
                    onkeyup="mascaraCpf('___.___.___-__', this)"
                    placeholder="Digite cpf sem pontos" type="text" autofocus="autofocus" th:field="*{cpf}">
           </div>
+          <div class="input-fiel col s3">
+            <label class="form-label" for="telefone">Telefone:</label>
+            <input autocomplete="off" class="form-control" id="telefone" name="telefone" th:field="*{telefone}"
+                   onkeyup="mascaraFixo('(##)####-####', this)" placeholder="Telefone fixo" type="text"
+                   autofocus="autofocus">
+          </div>
           <div class="input-fiel col s6 cb-required">
             <label class="form-label">Categoria</label>
             <select class="form-select" aria-label="Default select example" name="categoria">
@@ -47,19 +53,6 @@
                       th:value="${categorias}" th:text="${categorias}" th:field="*{categoria}"
                       autofocus="autofocus"></option>
             </select>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-fiel col s6">
-            <label class="form-label" for="celular">Telefone Celular:</label>
-            <input autocomplete="off" class="form-control" id="celular" name="celular" th:field="*{celular}"
-                   onkeyup="mascaraCel('(##)#####-####', this)" placeholder="Celular" type="text" autofocus="autofocus">
-          </div>
-          <div class="input-fiel col s6">
-            <label class="form-label" for="telefone">Telefone Fixo:</label>
-            <input autocomplete="off" class="form-control" id="telefone" name="telefone" th:field="*{telefone}"
-                   onkeyup="mascaraFixo('(##)####-####', this)" placeholder="Telefone fixo" type="text"
-                   autofocus="autofocus">
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Cadastro</button>

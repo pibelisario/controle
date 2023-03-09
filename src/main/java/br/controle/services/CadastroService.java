@@ -37,7 +37,6 @@ public class CadastroService {
         cadastro1.setNome(cadastro.getNome().toUpperCase());
         cadastro1.setCategoria(cadastro.getCategoria());
         cadastro1.setCpf(cadastro.getCpf());
-        cadastro1.setCelular(cadastro.getCelular());
         cadastro1.setRg(cadastro.getRg());
         cadastro1.setTelefone(cadastro.getTelefone());
         cadastroRepository.save(cadastro1);

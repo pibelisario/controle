@@ -21,7 +21,6 @@ Cadastro {
     private String nome;
 //    @CPF(message = "CPF invalido")
     private String cpf;
-    private String celular;
     private String telefone;
     @NotNull
     @NotEmpty
@@ -33,12 +32,11 @@ Cadastro {
     public Cadastro() {
     }
 
-    public Cadastro(Long id, String rg, String nome, String cpf, String celular, String telefone, String categoria) {
+    public Cadastro(Long id, String rg, String nome, String cpf, String telefone, String categoria) {
         this.id = id;
         this.rg = rg;
         this.nome = nome;
         this.cpf = cpf;
-        this.celular = celular;
         this.telefone = telefone;
         this.categoria = categoria;
     }
@@ -73,14 +71,6 @@ Cadastro {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
     }
 
     public String getTelefone() {
