@@ -1,0 +1,71 @@
+<!DOCTYPE html >
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="../fragmentos/fragmento :: head('Buscar')"></head>
+
+<body>
+<header th:replace="../fragmentos/fragmento :: header"></header>
+
+    <fieldset>
+        <legend>
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary btn-lg" type="button" disabled style="font-size: 20px;">
+                    Buscar entradas por data
+                </button>
+            </div>
+        </legend>
+        <div style="margin: auto;">
+            <div class="row">
+                <div class="alert alert-danger" th:text="${mensagem}"
+                     th:if="${not #strings.isEmpty(mensagem)}">
+                </div>
+                <form action="buscarData" method="get" id="salvarData" class="col s3">
+                    <label for="dataInicial">Data Inicial</label>
+                    <input type="date" id="dataInicial" name="dataInicial" required>
+                    <label for="dataFinal">Data Final</label>
+                    <input type="date" id="dataFinal" name="dataFinal" required>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </fieldset>
+
+    <table  class="table table-striped" th:if="${not #strings.isEmpty(listaEntradas)}">
+        <tr>
+            <th>Rg:</th>
+            <th>Nome:</th>
+            <th>Cpf:</th>
+            <th>Categoria:</th>
+            <th>Data:</th>
+            <th></th>
+        </tr>
+        <tr th:each="entrada : ${listaEntradas}">
+            <td th:text="${entrada.cadastro.rg}"></td>
+            <td th:text="${entrada.cadastro.nome}"></td>
+            <td th:text="${entrada.cadastro.cpf}"></td>
+            <td th:text="${entrada.cadastro.categoria}"></td>
+            <td th:text="${#dates.format(entrada.data, 'dd-MMM-yyyy HH:mm')}"></td>
+            <td><a th:href="@{/detalhes/{idCadastro}(idCadastro=${entrada.cadastro.id})}" class="btn btn-primary">Detalhes</a></td>
+        </tr>
+    </table>
+
+    <div class="row" style="margin-top: 30px;" th:if="${not #strings.isEmpty(listaEntradas)}">
+        <center>
+            <span th:if="${listaEntradas.hasPrevious()}">
+                <a th:href="@{/BuscarDataPag(page=${listaEntradas.number-1}, size=${listaEntradas.size})}" class="btn btn-primary">Pág. Anterior</a>
+             </span>
+            <th:block th:each="i : ${#numbers.sequence(0, listaEntradas.totalPages - 1)}">
+                <a th:href="@{/BuscarDataPag(page=${i}, size=${listaEntradas.size})}">[[${i} + 1]]</a>
+            </th:block>
+            <span th:if="${listaEntradas.hasNext()}">
+                <a th:href="@{/BuscarDataPag(page=${listaEntradas.number+1}, size=${listaEntradas.size})}" class="btn btn-danger ">Próx. Pag</a>
+             </span>
+        </center>
+    </div>
+
+
+
+
+<script th:replace="../fragmentos/fragmento :: funcoes"></script>
+<footer th:replace="../fragmentos/fragmento :: footer"></footer>
+</body>
+</html>

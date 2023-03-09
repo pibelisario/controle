@@ -62,16 +62,19 @@ public class CadastroController {
     }
 
 
-    @GetMapping("/buscar")
+    @GetMapping("/buscarCadastro")
     public ModelAndView buscar(){
-        ModelAndView mv = new ModelAndView("/buscar");
+        ModelAndView mv = new ModelAndView("/buscarCadastro");
         return mv;
     }
 
     @PostMapping("buscarRg")
     public ModelAndView buscarRg(@RequestParam("rg") String rg){
-        ModelAndView mv = new ModelAndView("/buscar");
+        ModelAndView mv = new ModelAndView("/buscarCadastro");
         List<Cadastro> rgLista = cadastroService.findByRg(rg);
+        if (rgLista.isEmpty()){
+            mv.addObject("mensagem", "Nenhum registo encontrado para o Rg: " +rg);
+        }
         mv.addObject("lista", rgLista);
         System.out.println(rg);
         return mv;
@@ -79,8 +82,11 @@ public class CadastroController {
 
     @PostMapping("buscarCpf")
     public ModelAndView buscarCpf(@RequestParam("cpf") String cpf){
-        ModelAndView mv = new ModelAndView("/buscar");
+        ModelAndView mv = new ModelAndView("/buscarCadastro");
         List<Cadastro> cpfList = cadastroService.findByCpf(cpf);
+        if (cpfList.isEmpty()){
+            mv.addObject("mensagem", "Nenhum registo entrado para o Cpf: " +cpf);
+        }
         mv.addObject("lista", cpfList);
         System.out.println(cpf);
         return mv;
@@ -88,8 +94,11 @@ public class CadastroController {
 
     @PostMapping("buscarNome")
     public ModelAndView buscarNome(@RequestParam("nome") String nome){
-        ModelAndView mv = new ModelAndView("/buscar");
+        ModelAndView mv = new ModelAndView("/buscarCadastro");
         List<Cadastro> nomeList = cadastroService.findByNome(nome);
+        if (nomeList.isEmpty()){
+            mv.addObject("mensagem", "Nenhum registo encontrado para o nome: " +nome);
+        }
         mv.addObject("lista", nomeList);
         System.out.println(nome);
         return mv;
@@ -99,7 +108,7 @@ public class CadastroController {
         Cadastro cadastro = cadastroService.findById(id);
         cadastroService.excluirCadastro(id);
         List<Cadastro> cadastros = cadastroService.findByRg(cadastro.getRg());
-        ModelAndView mv = new ModelAndView("/buscar");
+        ModelAndView mv = new ModelAndView("redirect:/buscarCadastro");
         mv.addObject("lista", cadastros);
         System.out.println(id);
         return mv;

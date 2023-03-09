@@ -37,26 +37,19 @@ public class EntradaController {
         this.entradaRepository = entradaRepository;
     }
 
-    //    @GetMapping("/entradas")
-//    public ModelAndView entradas() {
-//        Pageable pageable = PageRequest.of(0, 2);
-//        List<Entrada> entradas = entradaService.findAll();
-//        ModelAndView mv = new ModelAndView("/entradas");
-//        mv.addObject("entradas", entradaService.findAlll());
-//        return mv;
-//    }
+
 
     @GetMapping("/entradas")
     public ModelAndView entradas(){
         ModelAndView mv = new ModelAndView("/entradas");
-        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0,4, Sort.by("id").descending())));
+        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0,5, Sort.by("id").descending())));
         return mv;
     }
 
     @GetMapping("/entradasPag")
-    public ModelAndView carregarEntradas(@PageableDefault(size = 4) org.springframework.data.domain.Pageable pageable,
+    public ModelAndView carregarEntradas(@PageableDefault(size = 5) org.springframework.data.domain.Pageable pageable,
                                         ModelAndView model) {
-        model.addObject("entradas", entradaService.findAll(PageRequest.of(pageable.getPageNumber(), 4, Sort.by("id").descending())));
+        model.addObject("entradas", entradaService.findAll(PageRequest.of(pageable.getPageNumber(), 5, Sort.by("id").descending())));
         model.setViewName("/entradas");
         return model;
     }
@@ -73,6 +66,9 @@ public class EntradaController {
     public ModelAndView buscarRgEntrada(@RequestParam("rg") String rg){
         ModelAndView mv = new ModelAndView("/entradas");
         List<Cadastro> cadastros = cadastroService.findByRg(rg);
+        if (cadastros.isEmpty()){
+            mv.addObject("mensagem", "Nenhum registo encontrado para o RG: " +rg);
+        }
         mv.addObject("cadastros", cadastros);
         mv.addObject("entradas", entradaService.findAll(PageRequest.of(0, 4, Sort.by("id").descending())));
         mv.addObject("listaLocais", LocalEntrada.values());
@@ -84,6 +80,9 @@ public class EntradaController {
     public ModelAndView buscarNomeEntrada(@RequestParam("nome") String nome){
         ModelAndView mv = new ModelAndView("/entradas");
         List<Cadastro> cadastros = cadastroService.findByNome(nome);
+        if (cadastros.isEmpty()){
+            mv.addObject("mensagem", "Nenhum registo encontrado para o NOME: " +nome);
+        }
         mv.addObject("cadastros", cadastros);
         mv.addObject("entradas", entradaService.findAll(PageRequest.of(0, 4, Sort.by("id").descending())));
         mv.addObject("listaLocais", LocalEntrada.values());
@@ -95,6 +94,9 @@ public class EntradaController {
     public ModelAndView buscarCpfEntrada(@RequestParam("cpf") String cpf){
         ModelAndView mv = new ModelAndView("/entradas");
         List<Cadastro> cadastros = cadastroService.findByCpf(cpf);
+        if (cadastros.isEmpty()){
+            mv.addObject("mensagem", "Nenhum registo encontrado para o CPF: " +cpf);
+        }
         mv.addObject("cadastros", cadastros);
         mv.addObject("entradas", entradaService.findAll(PageRequest.of(0, 4, Sort.by("id").descending())));
         mv.addObject("listaLocais", LocalEntrada.values());
@@ -116,12 +118,34 @@ public class EntradaController {
         return mv;
     }
 
-    @GetMapping("buscarData")
-    public ModelAndView buscarData(@RequestParam("dataInicial")String dataInicial, @RequestParam("dataFinal")String dataFinal) throws ParseException {
-        ModelAndView mv = new ModelAndView("/buscar");
-        mv.addObject("listaEntradas", entradaService.buscarPorDatas(dataInicial, dataFinal));
+
+    @GetMapping("buscarEntrada")
+    public ModelAndView buscar(){
+        ModelAndView mv = new ModelAndView("/buscarEntrada");
+//        mv.addObject("listaEntradas",  null);
         return mv;
     }
+
+    @GetMapping("buscarData")
+    public ModelAndView buscarData(@RequestParam("dataInicial")String dataInicial, @RequestParam("dataFinal")String dataFinal) throws ParseException {
+        ModelAndView mv = new ModelAndView("/buscarEntrada");
+        Page<Entrada> entradas = entradaService.buscarPorDatas(dataInicial, dataFinal, PageRequest.of(0, 5));
+        if (entradas.isEmpty()){
+            mv.addObject("mensagem", "Nenhum registo encontrado para as datas entre: " +dataInicial+ " e " +dataFinal);
+        }
+        mv.addObject("listaEntradas", entradas);
+        return mv;
+    }
+
+    @GetMapping("BuscarDataPag")
+    public ModelAndView carregarDatasPaginacao(@PageableDefault(size = 10) org.springframework.data.domain.Pageable pageable,
+                                         ModelAndView model) {
+        model.addObject("listaEntradas", entradaService.findAll(PageRequest.of(pageable.getPageNumber(), 5)));
+        model.setViewName("/buscarEntrada");
+        return model;
+    }
+
+
 
 
 }

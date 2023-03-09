@@ -33,17 +33,22 @@ public class EntradaService {
         entradaRepository.save(entrada);
     }
 
-    public List<Entrada> buscarPorDatas(String dataInicial, String dataFinal) throws ParseException {
+//    public List<Entrada> buscarPorDatas(String dataInicial, String dataFinal) throws ParseException {
+//        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+//        Date dataInicialF = formato.parse(dataInicial);
+//        Date dataFinalF = formato.parse(dataFinal);
+//        dataFinalF.setHours(23);
+//        List<Entrada> entradas = entradaRepository.findEntradasByDataBetween(dataInicialF, dataFinalF);
+//        Collections.reverse(entradas);
+//        return entradas;
+//    }
+
+    public Page<Entrada> buscarPorDatas(String dataInicial, String dataFinal, Pageable pageable) throws ParseException {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date dataInicialF = formato.parse(dataInicial);
         Date dataFinalF = formato.parse(dataFinal);
         dataFinalF.setHours(23);
-        List<Entrada> entradas = entradaRepository.findEntradasByDataBetween(dataInicialF, dataFinalF);
-        Collections.reverse(entradas);
-        return entradas;
+        return entradaRepository.findEntradasByDataBetween(dataInicialF, dataFinalF, pageable);
     }
-
-
-
 
 }
