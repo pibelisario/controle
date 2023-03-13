@@ -42,14 +42,14 @@ public class EntradaController {
     @GetMapping("/entradas")
     public ModelAndView entradas(){
         ModelAndView mv = new ModelAndView("/entradas");
-        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0,5, Sort.by("id").descending())));
+        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0,10, Sort.by("id").descending())));
         return mv;
     }
 
     @GetMapping("/entradasPag")
     public ModelAndView carregarEntradas(@PageableDefault(size = 5) org.springframework.data.domain.Pageable pageable,
                                         ModelAndView model) {
-        model.addObject("entradas", entradaService.findAll(PageRequest.of(pageable.getPageNumber(), 5, Sort.by("id").descending())));
+        model.addObject("entradas", entradaService.findAll(PageRequest.of(pageable.getPageNumber(), 10, Sort.by("id").descending())));
         model.setViewName("/entradas");
         return model;
     }
@@ -70,7 +70,7 @@ public class EntradaController {
             mv.addObject("mensagem", "Nenhum registo encontrado para o RG: " +rg);
         }
         mv.addObject("cadastros", cadastros);
-        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0, 4, Sort.by("id").descending())));
+        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0, 10, Sort.by("id").descending())));
         mv.addObject("listaLocais", LocalEntrada.values());
         return mv;
     }
@@ -84,7 +84,7 @@ public class EntradaController {
             mv.addObject("mensagem", "Nenhum registo encontrado para o NOME: " +nome);
         }
         mv.addObject("cadastros", cadastros);
-        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0, 4, Sort.by("id").descending())));
+        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0, 10, Sort.by("id").descending())));
         mv.addObject("listaLocais", LocalEntrada.values());
         return mv;
     }
@@ -98,7 +98,7 @@ public class EntradaController {
             mv.addObject("mensagem", "Nenhum registo encontrado para o CPF: " +cpf);
         }
         mv.addObject("cadastros", cadastros);
-        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0, 4, Sort.by("id").descending())));
+        mv.addObject("entradas", entradaService.findAll(PageRequest.of(0, 10, Sort.by("id").descending())));
         mv.addObject("listaLocais", LocalEntrada.values());
         return mv;
     }
@@ -129,7 +129,7 @@ public class EntradaController {
     @GetMapping("buscarData")
     public ModelAndView buscarData(@RequestParam("dataInicial")String dataInicial, @RequestParam("dataFinal")String dataFinal) throws ParseException {
         ModelAndView mv = new ModelAndView("/buscarEntrada");
-        Page<Entrada> entradas = entradaService.buscarPorDatas(dataInicial, dataFinal, PageRequest.of(0, 5));
+        Page<Entrada> entradas = entradaService.buscarPorDatas(dataInicial, dataFinal, PageRequest.of(0, 15));
         if (entradas.isEmpty()){
             mv.addObject("mensagem", "Nenhum registo encontrado para as datas entre: " +dataInicial+ " e " +dataFinal);
         }
@@ -140,7 +140,7 @@ public class EntradaController {
     @GetMapping("BuscarDataPag")
     public ModelAndView carregarDatasPaginacao(@PageableDefault(size = 10) org.springframework.data.domain.Pageable pageable,
                                          ModelAndView model) {
-        model.addObject("listaEntradas", entradaService.findAll(PageRequest.of(pageable.getPageNumber(), 5)));
+        model.addObject("listaEntradas", entradaService.findAll(PageRequest.of(pageable.getPageNumber(), 15)));
         model.setViewName("/buscarEntrada");
         return model;
     }
