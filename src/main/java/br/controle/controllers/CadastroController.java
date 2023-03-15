@@ -115,7 +115,7 @@ public class CadastroController {
     }
 
     @GetMapping("/editarCadastro/{idCadastro}")
-    public ModelAndView editarCadasro(@PathVariable("idCadastro") Long id) {
+    public ModelAndView editarCadastro(@PathVariable("idCadastro") Long id) {
         ModelAndView mv = new ModelAndView("/editar");
         mv.addObject("objCadastro", cadastroService.findById(id));
         mv.addObject("listaCategorias", CategoriaCadastro.values());
@@ -123,25 +123,25 @@ public class CadastroController {
         return mv;
     }
 
-    @PostMapping("/editarCadastro/{idCadastro}")
-    public ModelAndView editarCadastro(@PathVariable("idCadastro") Long id, @Valid Cadastro cadastro, BindingResult result
-            , RedirectAttributes attributes){
-        ModelAndView mv = new ModelAndView();
-        if (result.hasErrors()){
-            mv.setViewName("redirect:/editarCadastro/" + id);
-            mv.addObject("objCadastro", cadastro);
-            mv.addObject("listaCategorias", CategoriaCadastro.values());
-            List<String> msg = new ArrayList<>();
-            for (ObjectError objectError : result.getAllErrors()) {
-                msg.add(objectError.getDefaultMessage());
-            }
-            attributes.addFlashAttribute("msg", msg);
-            return mv;
-        }
-        mv.setViewName("redirect:/editarCadastro/" + id);
-        cadastroService.editar(id, cadastro);
-        attributes.addFlashAttribute("mensagem", "Aualizado com sucesso.");
-        return mv;
+   @PostMapping("/editarCadastro")
+    public ModelAndView editarCadastro(@Valid Cadastro cadastro, BindingResult result
+           , RedirectAttributes attributes){
+       ModelAndView mv = new ModelAndView();
+       if (result.hasErrors()){
+           mv.setViewName("redirect:/editarCadastro/");
+           mv.addObject("objCadastro", cadastro);
+           mv.addObject("listaCategorias", CategoriaCadastro.values());
+           List<String> msg = new ArrayList<>();
+           for (ObjectError objectError : result.getAllErrors()) {
+               msg.add(objectError.getDefaultMessage());
+           }
+           attributes.addFlashAttribute("msg", msg);
+           return mv;
+       }
+       mv.setViewName("redirect:/editarCadastro/" +cadastro.getId());
+       cadastroService.editar(cadastro);
+       attributes.addFlashAttribute("mensagem", "Aualizado com sucesso.");
+       return mv;
     }
 
 
