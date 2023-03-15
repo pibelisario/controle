@@ -32,14 +32,8 @@ public class CadastroService {
         cadastroRepository.save(cadastro);
     }
 
-    public void editar(Long id, Cadastro cadastro){
-        Cadastro cadastro1 = cadastroRepository.findById(id).get();
-        cadastro1.setNome(cadastro.getNome().toUpperCase());
-        cadastro1.setCategoria(cadastro.getCategoria());
-        cadastro1.setCpf(cadastro.getCpf());
-        cadastro1.setRg(cadastro.getRg());
-        cadastro1.setTelefone(cadastro.getTelefone());
-        cadastroRepository.save(cadastro1);
+    public void editar(Cadastro cadastro){
+        cadastroRepository.save(cadastro);
     }
 
     public List<Cadastro> findByRg(String rg){

@@ -95,4 +95,17 @@ Cadastro {
     public void setEntradas(List<Entrada> entradas) {
         this.entradas = entradas;
     }
+
+    @Override
+    public String toString() {
+        return "Cadastro{" +
+                "id=" + id +
+                ", rg='" + rg + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", entradas=" + entradas +
+                '}';
+    }
 }
