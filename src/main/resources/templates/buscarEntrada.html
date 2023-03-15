@@ -19,11 +19,23 @@
                      th:if="${not #strings.isEmpty(mensagem)}">
                 </div>
                 <form action="buscarData" method="get" id="salvarData" class="col s3">
-                    <label for="dataInicial">Data Inicial</label>
-                    <input type="date" id="dataInicial" name="dataInicial" required>
-                    <label for="dataFinal">Data Final</label>
-                    <input type="date" id="dataFinal" name="dataFinal" required>
-                    <button type="submit" class="btn btn-primary">Buscar</button>
+                    <div class="row">
+                        <div class="col-md-6 form-group offset-md-3">
+                            <label for="dataInicial">Data Inicial</label>
+                            <input class="form-control" type="date" id="dataInicial" name="dataInicial" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group offset-md-3">
+                            <label for="dataFinal">Data Final</label>
+                            <input class="form-control" type="date" id="dataFinal" name="dataFinal" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group offset-md-5">
+                            <button type="submit" class="btn btn-primary btn-lg">Buscar</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
