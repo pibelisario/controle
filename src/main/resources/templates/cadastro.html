@@ -22,11 +22,13 @@
           </div>
         </div>
         <div class="row">
+          <!-- RG -->
           <div class="input-fiel col s6 cb-required">
             <label class="form-label" for="rg">Rg do Associado</label>
             <input class="form-control" id="rg" name="rg" placeholder="Digite rg sem pontos" autofocus="autofocus"
                    th:field="*{rg}">
           </div>
+          <!-- NOME -->
           <div class="input-fiel col s6 cb-required">
             <label class="form-label" for="nome">Nome</label>
             <input class="form-control" id="nome" name="nome" placeholder="Nome" type="text" autofocus="autofocus"
@@ -34,18 +36,21 @@
           </div>
         </div>
         <div class="row">
+          <!-- CPF -->
           <div class="input-fiel col s6">
             <label class="form-label" for="cpf">cpf</label>
             <input autocomplete="off" class="form-control" id="cpf" name="cpf"
                    onkeyup="mascaraCpf('___.___.___-__', this)"
                    placeholder="Digite cpf sem pontos" type="text" autofocus="autofocus" th:field="*{cpf}">
           </div>
+          <!-- TELEFONE -->
           <div class="input-fiel col s3">
             <label class="form-label" for="telefone">Telefone:</label>
             <input autocomplete="off" class="form-control" id="telefone" name="telefone" th:field="*{telefone}"
                    onkeyup="mascaraFixo('(##)####-####', this)" placeholder="Telefone fixo" type="text"
                    autofocus="autofocus">
           </div>
+          <!-- CATEGORIA -->
           <div class="input-fiel col s6 cb-required">
             <label class="form-label">Categoria</label>
             <select class="form-select" aria-label="Default select example" name="categoria">

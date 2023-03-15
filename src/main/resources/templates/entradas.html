@@ -16,33 +16,39 @@
             <div class="alert alert-danger" th:text="${mensagem}"
                  th:if="${not #strings.isEmpty(mensagem)}">
             </div>
+            <!-- BUSCA POR RG -->
             <form action="buscarRgEntrada" method="post" id="buscarPorRg" class="col s3">
                 <label for="rg">Buscar Rg: </label>
-                <input type="text"  id="rg" name="rg" required placeholder="Digite rg sem pontos" autofocus="autofocus">
-                <button type="submit" class="btn btn-primary">Buscar</button>
+                <input class="form-control" type="text"  id="rg" name="rg" required placeholder="Digite rg sem pontos" autofocus="autofocus">
+                <button type="submit" class="btn btn-primary btnn">Buscar</button>
             </form>
+            <!-- BUSCA POR NOME -->
             <form action="buscarNomeEntrada" method="post" id="buscarPorNome" class="col s3">
                 <label for="nome">Buscar Nome: </label>
-                <input type="text"  id="nome" name="nome" required autofocus="autofocus">
-                <button type="submit" class="btn btn-primary">Buscar</button>
+                <input class="form-control" type="text"  id="nome" name="nome" required autofocus="autofocus">
+                <button type="submit" class="btn btn-primary btnn">Buscar</button>
             </form>
+            <!-- BUSCA POR CPF -->
             <form action="buscarCpfEntrada" method="post" id="buscarPorCpf" class="col s3">
                 <label for="cpf">Buscar Cpf: </label>
-                <input type="text"  id="cpf" name="cpf" onkeyup="mascaraCpf('___.___.___-__', this)" required placeholder="Digite cpf sem pontos" autofocus="autofocus">
-                <button type="submit" class="btn btn-primary">Buscar</button>
+                <input class="form-control" type="text"  id="cpf" name="cpf" onkeyup="mascaraCpf('___.___.___-__', this)" required placeholder="Digite cpf sem pontos" autofocus="autofocus">
+                <button type="submit" class="btn btn-primary btnn">Buscar</button>
             </form>
         </div>
     </div>
 </fieldset>
 
-    <table  class="table table-striped" th:if="${not #strings.isEmpty(cadastros)}">
+    <table  class="table table-hover" th:if="${not #strings.isEmpty(cadastros)}">
+        <thead>
         <tr>
             <th>Rg:</th>
             <th>Nome:</th>
             <th>Cpf:</th>
             <th>Categoria:</th>
-            <td>Local:</td>
+            <th>Local:</th>
         </tr>
+        </thead>
+        <tbody>
         <tr th:each="cadastro : ${cadastros}">
             <td th:text="${cadastro.rg}"></td>
             <td th:text="${cadastro.nome}"></td>
@@ -59,9 +65,9 @@
                     <a class="btn btn-danger" th:href="@{/entradas}">Cancelar</a>
                     <input class="form-control" id="cadastro" name="cadastro" th:value="${cadastro.id}" type="hidden">
                 </form>
-            </td>>
-    
+            </td>
         </tr>
+        </tbody>
     </table>
 
 
