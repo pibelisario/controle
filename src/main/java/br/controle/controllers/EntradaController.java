@@ -41,6 +41,13 @@ public class EntradaController {
         return mv;
     }
 
+    @GetMapping("/excluirEntrada/{idEntrada}")
+    public ModelAndView excluirEntrada(@PathVariable("idEntrada")Long id){
+        ModelAndView mv = new ModelAndView("redirect:/entradas");
+        entradaService.excluirEntrada(id);
+        return mv;
+    }
+
     @GetMapping("/entradasPag")
     public ModelAndView carregarEntradas(@PageableDefault(size = 5) org.springframework.data.domain.Pageable pageable,
                                         ModelAndView model) {
