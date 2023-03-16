@@ -39,4 +39,8 @@ public class EntradaService {
         return entradaRepository.findEntradasByDataBetween(dataInicialF, dataFinalF, pageable);
     }
 
+    public void excluirEntrada(Long id){
+        entradaRepository.deleteById(id);
+    }
+
 }

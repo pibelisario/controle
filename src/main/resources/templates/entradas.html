@@ -65,6 +65,7 @@
                     <a class="btn btn-danger" th:href="@{/entradas}">Cancelar</a>
                     <input class="form-control" id="cadastro" name="cadastro" th:value="${cadastro.id}" type="hidden">
                 </form>
+
             </td>
         </tr>
         </tbody>
@@ -84,7 +85,7 @@
             <th>Data/Hora:</th>
             <th>Categoria:</th>
             <th>Local:</th>
-            <th></th>
+            <th>Ação</th>
         </tr>
         <tr th:each="entrada : ${entradas}">
             <td th:text="${entrada.cadastro.rg}"></td>
@@ -92,7 +93,10 @@
             <td th:text="${#dates.format(entrada.data, 'dd-MMM-yyyy HH:mm')}"></td>
             <td th:text="${entrada.cadastro.categoria}"></td>
             <td th:text="${entrada.local}"></td>
-            <td><a th:href="@{/detalhes/{idCadastro}(idCadastro=${entrada.cadastro.id})}" class="btn btn-primary">Detalhes</a></td>
+            <td>
+                <a th:href="@{/detalhes/{idCadastro}(idCadastro=${entrada.cadastro.id})}" class="btn btn-primary"><i class="fas fa-edit"></i> Detalhes</a>
+                <a th:href="@{/excluirEntrada/{idEntrada}(idEntrada=${entrada.id})}" class="btn btn-danger"><i class="fas fa-times"></i> Excluir</a>
+            </td>
         </tr>
     </table>
 </fildset>
