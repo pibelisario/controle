@@ -95,7 +95,8 @@
             <td th:text="${entrada.local}"></td>
             <td>
                 <a th:href="@{/detalhes/{idCadastro}(idCadastro=${entrada.cadastro.id})}" class="btn btn-primary"><i class="fas fa-edit"></i> Detalhes</a>
-                <a th:href="@{/excluirEntrada/{idEntrada}(idEntrada=${entrada.id})}" class="btn btn-danger"><i class="fas fa-times"></i> Excluir</a>
+                <a th:data-confirm-delete="|Você tem certeza que deseja excluir a entrada de: ${entrada.cadastro.nome} ?|"
+                   onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false" th:href="@{/excluirEntrada/{idEntrada}(idEntrada=${entrada.id})}" class="btn btn-danger"><i class="fas fa-times"></i> Excluir</a>
             </td>
         </tr>
     </table>
