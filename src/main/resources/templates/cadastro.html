@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="../fragmentos/fragmento :: head('Cadastro')"></head>
+<body>
+<header th:replace="../fragmentos/fragmento :: header"></header>
+<fieldset>
+  <legend>
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary btn-lg" type="button" disabled style="font-size: 20px;">Cadastrar Novo</button>
+    </div>
+</legend>
+  <div>
+    <div class="row">
+      <form action="salvar" class="col s12" method="post" th:object="${objCadastro}">
+        <div class="alert alert-success" th:text="${mensagem}"
+             th:if="${not #strings.isEmpty(mensagem)}">
+        </div>
+        <div class="alert alert-danger" th:if="${not #strings.isEmpty(msg)}">
+          <div th:each="m : ${msg}">
+            <span th:text="${m}"></span>
+          </div>
+        </div>
+        <div class="row">
+          <!-- RG -->
+          <div class="input-fiel col s6 cb-required">
+            <label class="form-label" for="rg">Rg do Associado</label>
+            <input class="form-control" id="rg" name="rg" placeholder="Digite rg sem pontos" autofocus="autofocus"
+                   th:field="*{rg}">
+          </div>
+          <!-- NOME -->
+          <div class="input-fiel col s6 cb-required">
+            <label class="form-label" for="nome">Nome</label>
+            <input class="form-control" id="nome" name="nome" placeholder="Nome" type="text" autofocus="autofocus"
+                   th:field="*{nome}">
+          </div>
+        </div>
+        <div class="row">
+          <!-- CPF -->
+          <div class="input-fiel col s6">
+            <label class="form-label" for="cpf">cpf</label>
+            <input autocomplete="off" class="form-control" id="cpf" name="cpf"
+                   onkeyup="mascaraCpf('___.___.___-__', this)"
+                   placeholder="Digite cpf sem pontos" type="text" autofocus="autofocus" th:field="*{cpf}">
+          </div>
+          <!-- TELEFONE -->
+          <div class="input-fiel col s3">
+            <label class="form-label" for="telefone">Telefone:</label>
+            <input autocomplete="off" class="form-control" id="telefone" name="telefone" th:field="*{telefone}"
+                   onkeyup="mascaraFixo('(##)####-####', this)" placeholder="Telefone fixo" type="text"
+                   autofocus="autofocus">
+          </div>
+          <!-- CATEGORIA -->
+          <div class="input-fiel col s6 cb-required">
+            <label class="form-label">Categoria</label>
+            <select class="form-select" aria-label="Default select example" name="categoria">
+              <option th:each="categorias : ${listaCategorias}"
+                      th:value="${categorias}" th:text="${categorias}" th:field="*{categoria}"
+                      autofocus="autofocus"></option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastro</button>
+        <a class="btn btn-danger" th:href="@{/cadastro}">Cancelar</a>
+      </form>
+  
+    </div>
+  </div>
+</fieldset>
+<script th:replace="../fragmentos/fragmento :: funcoes"></script>
+<footer th:replace="../fragmentos/fragmento :: footer"></footer>
+</body>
+</html>

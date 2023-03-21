@@ -1,0 +1,47 @@
+<!-- <!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="../fragmentos/fragmento :: head('Teste')"></head>
+<body>
+<header th:replace="../fragmentos/fragmento :: header"></header>
+<div class="container">
+	<div class="row">
+		<form action="salvarEntrada" class="col s12" method="post">
+			<div class="row">
+				<div class="input-fiel col s6">
+					<select class="form-select" aria-label="Default select example" name="local">
+						<option th:each="local : ${listaLocais}"
+								th:value="${local}" th:text="${local}"></option>
+					</select>
+				</div>
+				<div class="input-fiel col s6">
+					<input class="form-control" id="cadastro" name="cadastro" th:value="1" placeholder="Cadastro" type="hidden" required>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Cadastro</button>
+			<a class="btn btn-danger" th:href="@{/buscar}">Cancelar</a>
+		</form>
+
+	</div>
+</div>
+<script th:replace="../fragmentos/fragmento :: funcoes"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<a href="javascript:func()" onclick="confirmacao('1')">Remover registro #1</a>
+	<a href="javascript:func()" onclick="confirmacao('2')">Remover registro #2</a>
+	<a href="javascript:func()" onclick="confirmacao('3')">Remover registro #3</a>
+</body>
+
+</html>
