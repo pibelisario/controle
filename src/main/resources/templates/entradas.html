@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="../fragmentos/fragmento :: head('Entradas')"></head>
+<head th:replace="fragmento :: head('Entradas')"></head>
 
 <body>
-<header th:replace="../fragmentos/fragmento :: header"></header>
+<header th:replace="fragmento :: header"></header>
 
 <fieldset>
     <legend>
@@ -116,6 +116,8 @@
     </center>
 </div>
 
+
+
 <script>
     function mascaraCpf(mascara, input) {
     const vetMask = mascara.split("")
@@ -134,6 +136,6 @@
     }
   }
 </script>
-<footer th:replace="../fragmentos/fragmento :: footer"></footer>
+<footer th:replace="fragmento :: footer"></footer>
 </body>
 </html>

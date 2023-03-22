@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="../fragmentos/fragmento :: head('Cadastro')"></head>
+<head th:replace="fragmento :: head('Cadastro')"></head>
 <body>
-<header th:replace="../fragmentos/fragmento :: header"></header>
+<header th:replace="fragmento :: header"></header>
 <fieldset>
   <legend>
     <div class="d-grid gap-2">
@@ -67,7 +67,7 @@
     </div>
   </div>
 </fieldset>
-<script th:replace="../fragmentos/fragmento :: funcoes"></script>
-<footer th:replace="../fragmentos/fragmento :: footer"></footer>
+<script th:replace="fragmento :: funcoes"></script>
+<footer th:replace="fragmento :: footer"></footer>
 </body>
 </html>

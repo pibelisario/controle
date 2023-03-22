@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="../fragmentos/fragmento :: head('Buscar')"></head>
+<head th:replace="fragmento :: head('Buscar')"></head>
 
 <body>
-<header th:replace="../fragmentos/fragmento :: header"></header>
+<header th:replace="fragmento :: header"></header>
 
     <fieldset>
         <legend>
@@ -58,7 +58,7 @@
         </tr>
     </table>
 
-<script th:replace="../fragmentos/fragmento :: funcoes"></script>
-<footer th:replace="../fragmentos/fragmento :: footer"></footer>
+<script th:replace="fragmento :: funcoes"></script>
+<footer th:replace="fragmento :: footer"></footer>
 </body>
 </html>
