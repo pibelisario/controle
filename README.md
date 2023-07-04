@@ -1,4 +1,4 @@
-# Proteto Odonto
+# Proteto Controle
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/pibelisario/controle/blob/master/LICENSE) 
 
 # Sobre o projeto
@@ -14,43 +14,44 @@ cadastrar novas pessoas somente em caso dele não ser associado e ser a primeira
 
 ## Layout web
 
-### Tela de Login
+### Tela para adicionar entrada
 
-Cada dentista tem um login e senha para controle de acesso.
+Nessa tela primeiramente o usuário do sistema deve buscar a pessoa que irá adentrar à empresa, a pesquisa pode ser feita por Rg, Nome e CPF. Caso seja a primeira vez da pessoa será necessário realizar o cadastro da mesma (verificar na tela de cadastro) e posteriormente buscar o cadastro e realizar a entrada, escolhendo o departamento em que ela irá.
 
-![web 0](https://github.com/pibelisario/odonto/blob/master/assets/tela%20de%20login.png?raw=true) 
+OBS: Nenhuma informação de pessoas reais foram utilizadas nas telas.
 
-### Tela de Cadastro de Atendimento
+![web 0](https://github.com/pibelisario/controle/blob/dev1/assets/Tela%20Adicionar%20Entrada.png?raw=true) 
 
-Essa tela é preenchida pelo dentista ou assistente, aqui contem as informações pessoais de cada paciente, necessárias para gerar o relatório de atendimento ao final de cada mês.
+### Tela de visualização das últimas entradas
 
-![web 1](https://github.com/pibelisario/odonto/blob/master/assets/tela%20cadastro%20de%20atendimentos.png?raw=true) 
+Nessa tela é possível verificar as últimas entradas feitas na empresa (tela possui paginação),
+nela e possível verificar informações pessoais, data/hora de entrada e o local em que a pessoa foi na empresa. Também e possível verificar os detalhes de cada pessoa que entrou clicando na opção detalhes (verificar na tela detalhes) ou até mesmo excluir alguma entrada.
 
-### Tela lista de atendimentos
+![web 1](https://github.com/pibelisario/controle/blob/dev1/assets/Tela%20de%20Entradas.png?raw=true) 
 
-Aqui o dentista pode visualizar, editar ou excluir algum atendimento caso necessário. 
-Também possui um campo busca por mês onde ele consegue visualizar atendimentos passados realizados.
-Devido ao controle de acesso, os atendimentos que iram aparecer serão somente os que foram realizados pelo usuário que esta logado.
+### Tela detalhes do cadastro
 
-![web 2](https://github.com/pibelisario/odonto/blob/master/assets/tela%20de%20atendimentos.png?raw=true)
+Tela para visualizar informações pessoais sobre associado, dependente ou outros.
 
-### Tela para gerar relatório mensal
+![web 2](https://github.com/pibelisario/controle/blob/dev1/assets/Tela%20Detalhes.png?raw=true)
 
-Essa tela permite que o dentista selecione o mês desejado para gerar um relatório com todos os atendimentos.
+### Tela cadastro novo
 
-![web 3](https://github.com/pibelisario/odonto/blob/master/assets/tela%20gerar%20relat%C3%B3rio.png?raw=true)
+Tela de cadastro
 
-### Primeira página relatório
+![web 3](https://github.com/pibelisario/controle/blob/dev1/assets/Tela%20de%20Cadastro.png?raw=true)
 
-Aqui o dentista tem informações sobre o atendimento de cada paciente, contem informações como data, observações, dados pessoais entre outras informações.
+### Tela buscar cadastro
 
-![web 4](https://github.com/pibelisario/odonto/blob/master/assets/tela%20p%C3%A1g%201%20relat%C3%B3rio.png?raw=true)
+Tela para buscar cadastro e caso necessário editar ou excluir
 
-### Página final
+![web 4](https://github.com/pibelisario/controle/blob/dev1/assets/Tela%20Buscar%20Cadastro.png?raw=true)
 
-Está sempre será a última página de cada relatório. Essa página possui uma tabela com informações sobre a quantidade de atendimento e procedimentos realizados, com um campo para assinatura e carimbo de cada dentista para posteriormente ser impresso e entregue a diretoria.
+### Tela buscar entradas
 
-![web 5](https://github.com/pibelisario/odonto/blob/master/assets/tela%20p%C3%A1g%202%20relat%C3%B3rio.png?raw=true)
+Nessa tela e possível fazer a busca de entradas entre as datas escolhidas.
+
+![web 5](https://github.com/pibelisario/controle/blob/dev1/assets/Tela%20Buscar%20Entradas.png?raw=true)
 
 
 # Tecnologias utilizadas
@@ -59,8 +60,6 @@ Está sempre será a última página de cada relatório. Essa página possui uma
 - Spring Boot
 - JPA / Hibernate
 - Maven
-- Spring Security
-- LibrePDF
   
 ## Front end
 - thymeleaf
