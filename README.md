@@ -3,8 +3,6 @@
 
 # Sobre o projeto
 
-https://wmazoni-sds1.netlify.app
-
 Eu tive a ideia de fazer a aplicação "Controle" a partir da necessidade da empresa a qual trabalho teve de fazer o monitoramento e controle de acesso de pessoas
 as dependências da empresa. Com essa aplicação é possível registrar as informações pessoais, data, horário e local em que a pessoa esteve na empresa. 
 Está aplicação atualmente esta em uso na empresa e tem sido de grande ajuda para o controle de acesso de pessoas. 
