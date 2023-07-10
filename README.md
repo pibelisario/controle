@@ -14,9 +14,9 @@ cadastrar novas pessoas somente em caso dele não ser associado e ser a primeira
 
 ### Tela para adicionar entrada
 
-Nessa tela primeiramente o usuário do sistema deve buscar a pessoa que irá adentrar à empresa, a pesquisa pode ser feita por Rg, Nome e CPF. Caso seja a primeira vez da pessoa será necessário realizar o cadastro da mesma (verificar na tela de cadastro) e posteriormente buscar o cadastro e realizar a entrada, escolhendo o departamento em que ela irá.
-
 ##OBS: Nenhuma informação de pessoas reais foram utilizadas nas telas.##
+
+Nessa tela primeiramente o usuário do sistema deve buscar a pessoa que irá adentrar à empresa, a pesquisa pode ser feita por Rg, Nome e CPF. Caso seja a primeira vez da pessoa será necessário realizar o cadastro da mesma (verificar na tela de cadastro) e posteriormente buscar o cadastro e realizar a entrada, escolhendo o departamento em que ela irá.
 
 ![web 0](https://github.com/pibelisario/controle/blob/dev1/assets/Tela%20Adicionar%20Entrada.png?raw=true) 
 
